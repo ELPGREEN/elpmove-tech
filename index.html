@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELPMOVE - Your Smart Mobility Solution</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Fonte Orbitron -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Three.js e GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Cabeçalho com Menu -->
+    <header class="header">
+        <div class="main-width">
+            <div class="logo">
+                <a href="#home">
+                    <h1><span>ELP</span>MOVE</h1>
+                </a>
+                <p>Your Smart Mobility Solution</p>
+            </div>
+            <nav class="nav">
+                <ul class="menu">
+                    <li><a href="#home" class="interact">Home</a></li>
+                    <li><a href="#products" class="interact">HX Products</a></li>
+                    <li><a href="#about" class="interact">About us</a></li>
+                    <li><a href="#support" class="interact">Support</a></li>
+                    <li><a href="#news" class="interact">News</a></li>
+                    <li><a href="#contact" class="interact">Contact us</a></li>
+                </ul>
+            </nav>
+            <div class="phone-menu">
+                <span class="b1"></span>
+                <span class="b2"></span>
+                <span class="b3"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Canvas para Three.js -->
+    <canvas id="canvas"></canvas>
+
+    <!-- Fallback caso o canvas não carregue -->
+    <div id="canvas-fallback" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a23, #1a1a3d); z-index: -2;"></div>
+
+    <!-- Seções da Página -->
+    <main>
+        <!-- Home -->
+        <section id="home" class="section active">
+            <h1>Unleash <span>Mobility</span> with ELPMOVE</h1>
+            <p>Explore smart mobility solutions in a futuristic universe.</p>
+            <div class="features">
+                <span>🌟 Long Battery Life</span>
+                <span>🚀 High Performance</span>
+                <span>💡 Innovative Design</span>
+            </div>
+            <a href="#products" class="cosmo-btn interact">Discover Products</a>
+        </section>
+
+        <!-- HX Products -->
+        <section id="products" class="section">
+            <h2>HX Products</h2>
+            <div class="product-grid">
+                <div class="product">
+                    <h3>X6 E-Scooter</h3>
+                    <img src="https://via.placeholder.com/250x150" alt="X6 E-Scooter">
+                    <p>Long Battery E-Scooter for extended rides.</p>
+                </div>
+                <div class="product">
+                    <h3>X7 E-Scooter</h3>
+                    <img src="https://via.placeholder.com/250x150" alt="X7 E-Scooter">
+                    <p>Mountain-ready E-Scooter for tough terrains.</p>
+                </div>
+                <div class="product">
+                    <h3>X10 E-Scooter</h3>
+                    <img src="https://via.placeholder.com/250x150" alt="X10 E-Scooter">
+                    <p>Compact and efficient E-Scooter.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us -->
+        <section id="about" class="section">
+            <h2>Revolutionizing Mobility with ELPMOVE</h2>
+            <p>We are dedicated to transforming the way you move with cutting-edge smart mobility solutions, powered by innovation and sustainability.</p>
+        </section>
+
+        <!-- Support -->
+        <section id="support" class="section">
+            <h2>Support</h2>
+            <p>Find answers to your questions or contact our support team.</p>
+            <a href="#contact" class="cosmo-btn interact">Get Help</a>
+        </section>
+
+        <!-- News -->
+        <section id="news" class="section">
+            <h2>News</h2>
+            <div class="news-grid">
+                <div class="news-item">
+                    <h3>New X10 Launch</h3>
+                    <p>Discover the latest addition to our E-Scooter lineup, the X10!</p>
+                </div>
+                <div class="news-item">
+                    <h3>ELPMOVE at Tech Expo 2025</h3>
+                    <p>Join us at the Tech Expo 2025 to see our latest innovations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us -->
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <p>Email: support@elpmove.com | Phone: (11) 1234-5678</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit" class="cosmo-btn">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
