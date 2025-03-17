@@ -140,3 +140,46 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('resize', () => {
     engine.resize();
 });
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.add('hidden');
+        section.classList.remove('active');
+    });
+    const targetSection = document.getElementById(sectionId);
+    targetSection.classList.remove('hidden');
+    targetSection.classList.add('active');
+
+    // Animação da seção
+    gsap.fromTo(targetSection, 
+        { opacity: 0, y: 50 }, 
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+    );
+
+    // Animação específica do banner, se for a seção de produtos
+    if (sectionId === 'produtos') {
+        const bannerTitle = targetSection.querySelector('.banner-title');
+        const bannerSubtitle = targetSection.querySelector('.banner-subtitle');
+        const bannerBtn = targetSection.querySelector('.banner-btn');
+        gsap.from([bannerTitle, bannerSubtitle, bannerBtn], {
+            opacity: 0,
+            y: 30,
+            stagger: 0.2,
+            duration: 0.6,
+            ease: "power2.out",
+            delay: 0.2
+        });
+    }
+
+    // Animação dos itens de produto
+    const products = targetSection.querySelectorAll('.product-item');
+    if (products.length > 0) {
+        gsap.from(products, {
+            opacity: 0,
+            y: 30,
+            stagger: 0.2,
+            duration: 0.6,
+            ease: "power2.out",
+            delay: 0.3
+        });
+    }
+}

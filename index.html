@@ -6,10 +6,9 @@
     <title>ELP-MOVE - Franquia de Mobilidade Sustentável</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Babylon.js -->
-    <script src="https://cdn.babylonjs.com/babylon.js"></script>
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+   
 </head>
 <body>
     <!-- Cabeçalho com Menu -->
@@ -52,60 +51,73 @@
     <main>
         <!-- Home -->
         <section id="home" class="section active">
+            <img src="image/logo.png" style="width: 30%;" alt="">
+<br> <br>
             <h1>ELP-MOVE - A Revolução da Mobilidade Sustentável</h1>
             <p>Somos a franquia líder em micromobilidade elétrica na Itália, oferecendo soluções inovadoras de aluguel e venda de scooters e e-bikes. Nossa missão é transformar a mobilidade urbana e turística, combinando lucro com sustentabilidade.</p>
             <a href="#produtos" class="cosmo-btn">Conheça Nossos Produtos</a>
         </section>
 
-        <!-- Produtos -->
         <section id="produtos" class="section hidden">
-            <h2>Nossos Produtos</h2>
-            <p>Oferecemos uma ampla gama de scooters elétricas e e-bikes de alta qualidade, disponíveis para aluguel e venda. Todos os nossos produtos são fornecidos pela Kixin Electronics, garantindo inovação, durabilidade e desempenho excepcional.</p>
+            <div class="banner-container">
+                <video autoplay muted loop playsinline class="banner-video">
+                    <source src="video/1712538379970608.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeos HTML5.
+                </video>
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <img src="image/logo.png" style="width: 10%;" alt="">
+                    <h2 class="banner-title">Nossos Produtos</h2>
+                    <p class="banner-subtitle">Descubra scooters elétricas e e-bikes de alta qualidade da Kixin Electronics, perfeitas para aluguel e venda.</p>
+                    <a href="#franquia" class="cosmo-btn banner-btn">Saiba Mais</a>
+                </div>
+            </div>
             
-            <h3>Scooters Elétricas</h3>
-            <div class="product-grid">
-                <div class="product-item">
-                    <img src="images/x8-scooter.png" alt="X8 Scooter">
-                    <h4>X8 - Scooter Elétrica com Bateria Removível</h4>
-                    <p>Ideal para uso urbano e turístico, a X8 oferece uma bateria removível de alta capacidade, velocidade máxima de 45 km/h e autonomia de até 60 km. Perfeita para aluguel por hora (€1/10min) ou dia (€10), e também disponível para venda direta ou assinatura (€30/mês).</p>
-                    <p><strong>Preço de Venda:</strong> €1.200 (com incentivos fiscais, reduzido para €720)</p>
+            <div class="products-content">
+                <h3>Scooters Elétricas</h3>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="images/x8-scooter.png" alt="X8 Scooter">
+                        <h4>X8 - Scooter Elétrica com Bateria Removível</h4>
+                        <p>Ideal para uso urbano e turístico, a X8 oferece uma bateria removível de alta capacidade, velocidade máxima de 45 km/h e autonomia de até 60 km. Perfeita para aluguel por hora (€1/10min) ou dia (€10), e também disponível para venda direta ou assinatura (€30/mês).</p>
+                        <p><strong>Preço de Venda:</strong> €1.200 (com incentivos fiscais, reduzido para €720)</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="images/x9-scooter.png" alt="X9 Scooter">
+                        <h4>X9 - Scooter Elétrica de Luxo</h4>
+                        <p>Com design premium e desempenho superior, a X9 é ideal para uso corporativo e turístico de alta demanda. Velocidade máxima de 60 km/h e autonomia de até 100 km. Disponível para aluguel, venda direta e assinatura.</p>
+                        <p><strong>Preço de Venda:</strong> €1.500 (com incentivos fiscais, reduzido para €900)</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="images/foldable-scooter.png" alt="Foldable Scooter">
+                        <h4>Scooter Elétrica Portátil Dobrável</h4>
+                        <p>Leve e compacta, esta scooter é perfeita para deslocamentos urbanos e viagens. Velocidade máxima de 45 km/h e autonomia de até 50 km. Ideal para aluguel e venda direta.</p>
+                        <p><strong>Preço de Venda:</strong> €1.000 (com incentivos fiscais, reduzido para €600)</p>
+                    </div>
                 </div>
-                <div class="product-item">
-                    <img src="images/x9-scooter.png" alt="X9 Scooter">
-                    <h4>X9 - Scooter Elétrica de Luxo</h4>
-                    <p>Com design premium e desempenho superior, a X9 é ideal para uso corporativo e turístico de alta demanda. Velocidade máxima de 60 km/h e autonomia de até 100 km. Disponível para aluguel, venda direta e assinatura.</p>
-                    <p><strong>Preço de Venda:</strong> €1.500 (com incentivos fiscais, reduzido para €900)</p>
-                </div>
-                <div class="product-item">
-                    <img src="images/foldable-scooter.png" alt="Foldable Scooter">
-                    <h4>Scooter Elétrica Portátil Dobrável</h4>
-                    <p>Leve e compacta, esta scooter é perfeita para deslocamentos urbanos e viagens. Velocidade máxima de 45 km/h e autonomia de até 50 km. Ideal para aluguel e venda direta.</p>
-                    <p><strong>Preço de Venda:</strong> €1.000 (com incentivos fiscais, reduzido para €600)</p>
+        
+                <h3>E-Bikes</h3>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="images/h1-ebike.png" alt="H1 E-Bike">
+                        <h4>H1 - E-Bike Urbana com Bateria Removível</h4>
+                        <p>Projetada para mobilidade urbana, a H1 combina tecnologia de pintura automotiva com uma bateria removível patenteada. Velocidade máxima de 25 km/h e autonomia de até 70 km. Disponível para aluguel e venda direta.</p>
+                        <p><strong>Preço de Venda:</strong> €1.800 (com incentivos fiscais, reduzido para €1.080)</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="images/h2-ebike.png" alt="H2 E-Bike">
+                        <h4>H2 - E-Bike Urbana Inteligente</h4>
+                        <p>Uma e-bike premium para uso urbano, com design elegante e tecnologia inteligente. Velocidade máxima de 25 km/h e autonomia de até 80 km. Ideal para aluguel, venda direta e assinatura corporativa.</p>
+                        <p><strong>Preço de Venda:</strong> €2.000 (com incentivos fiscais, reduzido para €1.200)</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="images/mountain-ebike.png" alt="Mountain E-Bike">
+                        <h4>E-Bike de Montanha Portátil</h4>
+                        <p>Perfeita para terrenos acidentados e aventuras ao ar livre, esta e-bike oferece robustez e desempenho. Velocidade máxima de 25 km/h e autonomia de até 60 km. Disponível para venda direta.</p>
+                        <p><strong>Preço de Venda:</strong> €2.500 (com incentivos fiscais, reduzido para €1.500)</p>
+                    </div>
                 </div>
             </div>
-
-            <h3>E-Bikes</h3>
-            <div class="product-grid">
-                <div class="product-item">
-                    <img src="images/h1-ebike.png" alt="H1 E-Bike">
-                    <h4>H1 - E-Bike Urbana com Bateria Removível</h4>
-                    <p>Projetada para mobilidade urbana, a H1 combina tecnologia de pintura automotiva com uma bateria removível patenteada. Velocidade máxima de 25 km/h e autonomia de até 70 km. Disponível para aluguel e venda direta.</p>
-                    <p><strong>Preço de Venda:</strong> €1.800 (com incentivos fiscais, reduzido para €1.080)</p>
-                </div>
-                <div class="product-item">
-                    <img src="images/h2-ebike.png" alt="H2 E-Bike">
-                    <h4>H2 - E-Bike Urbana Inteligente</h4>
-                    <p>Uma e-bike premium para uso urbano, com design elegante e tecnologia inteligente. Velocidade máxima de 25 km/h e autonomia de até 80 km. Ideal para aluguel, venda direta e assinatura corporativa.</p>
-                    <p><strong>Preço de Venda:</strong> €2.000 (com incentivos fiscais, reduzido para €1.200)</p>
-                </div>
-                <div class="product-item">
-                    <img src="images/mountain-ebike.png" alt="Mountain E-Bike">
-                    <h4>E-Bike de Montanha Portátil</h4>
-                    <p>Perfeita para terrenos acidentados e aventuras ao ar livre, esta e-bike oferece robustez e desempenho. Velocidade máxima de 25 km/h e autonomia de até 60 km. Disponível para venda direta.</p>
-                    <p><strong>Preço de Venda:</strong> €2.500 (com incentivos fiscais, reduzido para €1.500)</p>
-                </div>
-            </div>
-            <a href="#franquia" class="cosmo-btn">Saiba Mais Sobre Nossa Franquia</a>
         </section>
 
         <!-- Modelo de Franquia -->
@@ -237,5 +249,8 @@
 </footer>
     <!-- Scripts -->
     <script src="script.js"></script>
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </body>
 </html>
