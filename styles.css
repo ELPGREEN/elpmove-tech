@@ -6,8 +6,8 @@
 
 body {
     font-family: 'Poppins', Arial, sans-serif;
-    color: #e0e0ff; /* Tom claro para melhor legibilidade */
-    background: linear-gradient(45deg, #4b0082, #00ffff); /* Roxo para ciano */
+    color: #E0F7FA; /* Tom claro e nítido */
+    background: linear-gradient(45deg, #f4f5f5, #a5fffa, #fffdfd); /* Gradiente metálico HD */
     overflow-x: hidden;
     line-height: 1;
 }
@@ -26,10 +26,10 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: linear-gradient(45deg, rgba(75, 0, 130, 0.9), rgba(0, 255, 255, 0.9));
+    background: linear-gradient(45deg, rgba(30, 58, 138, 0.9), rgba(109, 40, 217, 0.9)); /* Gradiente nítido */
     z-index: 10;
     padding: 15px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid #C0C0C0; /* Borda nítida em vez de sombra */
 }
 
 .main-width {
@@ -45,7 +45,7 @@ body {
 .logo h1 {
     font-size: 28px;
     font-weight: 700;
-    background: linear-gradient(45deg, #e0e0ff, #fff);
+    background: linear-gradient(45deg, #E0F7FA, #FFFFFF); /* Gradiente nítido */
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -53,8 +53,8 @@ body {
 
 .logo h5 {
     font-size: 14px;
-    font-weight: 300;
-    color: #d0d0ff;
+    font-weight: 400; /* Menor peso para nitidez */
+    color: #E0F7FA;
 }
 
 /* Menu Desktop */
@@ -65,11 +65,11 @@ body {
 }
 
 .nav .menu li {
-    margin: 0 10px; /* Ajustado para melhor espaçamento */
+    margin: 3px 10px;
 }
 
 .nav .menu a {
-    color: #e0e0ff;
+    color: #E0F7FA;
     text-decoration: none;
     font-weight: 500;
     font-size: 16px;
@@ -77,7 +77,7 @@ body {
 }
 
 .nav .menu a:hover {
-    background: linear-gradient(45deg, #c940d6, #00ffff);
+    background: linear-gradient(45deg, #d9fdfd, #bda5ff, #fffdfd);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -95,7 +95,7 @@ body {
 .phone-menu span {
     width: 35px;
     height: 4px;
-    background: #e0e0ff;
+    background: #E0F7FA;
     transition: all 0.3s;
 }
 
@@ -113,7 +113,7 @@ body {
     align-items: center;
     padding: 80px 0px;
     text-align: center;
-    background: linear-gradient(45deg, rgba(10, 10, 30, 0.9), rgba(4, 59, 22, 0.3));
+    background: linear-gradient(45deg, rgba(30, 58, 138, 0.7), rgba(109, 40, 217, 0.3)); /* Gradiente nítido */
     width: 100vw;
     margin: 0;
     box-sizing: border-box;
@@ -124,29 +124,30 @@ body {
 
 .section h2 {
     font-size: 36px;
+    font-weight: 700; /* Peso para nitidez */
     margin-bottom: 20px;
-    background: linear-gradient(45deg, #1f8b62, #00ffff);
+    background: linear-gradient(45deg, #2ce6f3, #fafafa, #f817e5);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .section h3 {
     font-size: 28px;
+    font-weight: 600; /* Peso para nitidez */
     margin-bottom: 20px;
-    background: linear-gradient(45deg, #a69dad, #00ffff);
+    background: linear-gradient(45deg, #00b7ff, #f25ff7, #fffdfd);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .section p {
     font-size: 18px;
+    font-weight: 400; /* Peso leve para texto corpo */
     max-width: 800px;
     margin-bottom: 30px;
-    color: #d0d0ff;
+    color: #E0F7FA;
 }
 
 .section.active {
@@ -161,7 +162,7 @@ body {
 /* Botão Cosmo */
 .cosmo-btn {
     padding: 12px 25px;
-    background: linear-gradient(45deg, #4b0082, #00ffff);
+    background: linear-gradient(45deg, #35fa04, #440be0, #fffdfd);
     border: none;
     border-radius: 25px;
     color: #fff;
@@ -169,12 +170,13 @@ body {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s;
+    border: 1px solid #C0C0C0; /* Borda nítida */
 }
 
 .cosmo-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 0, 255, 0.5);
+    border-color: #6D28D9; /* Destaque nítido */
 }
 
 /* Product Grid */
@@ -192,13 +194,13 @@ body {
     padding: 25px;
     border-radius: 15px;
     transition: transform 0.3s, background 0.3s;
-    border: 1px solid rgba(0, 255, 255, 0.2);
+    border: 1px solid #C0C0C0; /* Borda nítida */
 }
 
 .product-item:hover {
     transform: translateY(-10px);
-    background: rgba(75, 0, 130, 0.1);
-    border-color: #00ffff;
+    background: rgba(30, 58, 138, 0.1);
+    border-color: #6D28D9; /* Destaque nítido */
 }
 
 .product-item img {
@@ -210,7 +212,8 @@ body {
 
 .product-item h4 {
     font-size: 22px;
-    background: linear-gradient(45deg, #4b0082, #00ffff);
+    font-weight: 700; /* Peso para nitidez */
+    background: linear-gradient(45deg, #d9fdfd, #bda5ff, #fffdfd);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -219,7 +222,8 @@ body {
 
 .product-item p {
     font-size: 16px;
-    color: #d0d0ff;
+    font-weight: 400;
+    color: #E0F7FA;
 }
 
 /* Listas */
@@ -232,15 +236,16 @@ body {
 
 .section ul li {
     font-size: 16px;
+    font-weight: 400;
     margin-bottom: 15px;
     position: relative;
     padding-left: 25px;
-    color: #d0d0ff;
+    color: #E0F7FA;
 }
 
 .section ul li:before {
     content: "✔";
-    background: linear-gradient(45deg, #4b0082, #00ffff);
+    background: linear-gradient(45deg, #d9fdfd, #bda5ff, #fffdfd);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -255,8 +260,9 @@ body {
 
 .contact-info p {
     font-size: 16px;
+    font-weight: 400;
     margin: 10px 0;
-    color: #d0d0ff;
+    color: #E0F7FA;
 }
 
 .contact-form {
@@ -270,11 +276,12 @@ body {
 .contact-form input,
 .contact-form textarea {
     padding: 12px;
-    border: 1px solid rgba(0, 255, 255, 0.3);
+    border: 1px solid #C0C0C0; /* Borda nítida */
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.05);
-    color: #e0e0ff;
+    color: #E0F7FA;
     font-size: 16px;
+    font-weight: 400;
 }
 
 .contact-form textarea {
@@ -292,6 +299,7 @@ body {
     width: 100%;
     height: 500px;
     overflow: hidden;
+    border-bottom: 1px solid #C0C0C0; /* Borda nítida */
 }
 
 .banner-video {
@@ -309,7 +317,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(75, 0, 130, 0.7), rgba(0, 255, 255, 0.4));
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.7), rgba(109, 40, 217, 0.4));
     z-index: 0;
 }
 
@@ -322,18 +330,17 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #e0e0ff;
+    color: #E0F7FA;
     padding: 20px;
 }
 
 .banner-title {
     font-family: 'Poppins', sans-serif;
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 700; /* Peso para nitidez */
     text-transform: uppercase;
     margin-bottom: 15px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(45deg, #4b0082, #00ffff);
+    background: linear-gradient(45deg, #d9fdfd, #bda5ff, #fffdfd);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -343,15 +350,14 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     font-weight: 400;
-    color: #d0d0ff;
+    color: #E0F7FA;
     margin-bottom: 20px;
     max-width: 600px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .banner-btn {
     padding: 12px 25px;
-    background: linear-gradient(45deg, #4b0082, #00ffff);
+    background: linear-gradient(45deg,#2cf336, #53a7f7, #fffdfd);
     border: none;
     border-radius: 25px;
     color: #fff;
@@ -359,12 +365,13 @@ body {
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s;
+    border: 1px solid #C0C0C0; /* Borda nítida */
 }
 
 .banner-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 0, 255, 0.5);
+    border-color: #6D28D9; /* Destaque nítido */
 }
 
 .products-content {
@@ -374,11 +381,12 @@ body {
 
 /* Footer */
 .footer {
-    background: linear-gradient(45deg, rgba(111, 17, 179, 0.9), rgba(17, 107, 107, 0.9));
-    color: #e0e0ff;
+    background: linear-gradient(45deg, rgba(30, 58, 138, 0.9), rgba(109, 40, 217, 0.9));
+    color: #E0F7FA;
     padding: 40px 30px 20px;
     width: 100%;
     margin-top: auto;
+    border-top: 1px solid #C0C0C0; /* Borda nítida */
 }
 
 .footer-content {
@@ -397,18 +405,19 @@ body {
 
 .footer-section h4 {
     font-size: 18px;
-    background: linear-gradient(45deg, #e1dee4, #00ffff);
+    font-weight: 600; /* Peso para nitidez */
+    background: linear-gradient(45deg, #d9fdfd, #bda5ff, #fffdfd);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     margin-bottom: 15px;
-    font-weight: 600;
 }
 
 .footer-section p {
     font-size: 14px;
+    font-weight: 400;
     margin-bottom: 10px;
-    color: #d0d0ff;
+    color: #E0F7FA;
 }
 
 .footer-section ul {
@@ -420,13 +429,13 @@ body {
 }
 
 .footer-section ul li a {
-    color: #d0d0ff;
+    color: #E0F7FA;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .footer-section ul li a:hover {
-    background: linear-gradient(45deg, #b5dfc7, #00ffff);
+    background: linear-gradient(45deg, #d9fdfd, #bda5ff, #fffdfd);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -434,13 +443,13 @@ body {
 
 .social-links a {
     margin-right: 15px;
-    color: #e0e0ff;
+    color: #E0F7FA;
     font-size: 18px;
     transition: color 0.3s;
 }
 
 .social-links a:hover {
-    background: linear-gradient(45deg, #4b0082, #00ffff);
+    background: linear-gradient(45deg, #d9fdfd, #bda5ff, #fffdfd);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -449,10 +458,10 @@ body {
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
-    border-top: 1px solid rgba(0, 255, 255, 0.2);
+    border-top: 1px solid #C0C0C0;
     margin-top: 20px;
     font-size: 12px;
-    color: #a0a0ff;
+    color: #B2EBF2;
 }
 
 /* Responsividade */
@@ -467,7 +476,7 @@ body {
         top: 100%;
         left: 0;
         width: 100%;
-        background: linear-gradient(45deg, rgba(75, 0, 130, 0.9), rgba(0, 255, 255, 0.9));
+        background: linear-gradient(45deg, rgba(30, 58, 138, 0.9), rgba(109, 40, 217, 0.9));
     }
 
     .nav.active {
@@ -554,6 +563,321 @@ body {
     }
 
     .footer-section p {
+        font-size: 12px;
+    }
+}
+/* Franchise Slider */
+.franchise-slider {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 400px;
+    overflow: hidden;
+    margin: 20px auto;
+    border-radius: 15px;
+    border: 1px solid #C0C0C0; /* Borda nítida */
+}
+
+.franchise-slider .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.franchise-slider .slide.active {
+    opacity: 1;
+}
+
+.franchise-slider .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.franchise-slider .slide-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(30, 58, 138, 0.8);
+    padding: 15px 25px;
+    border-radius: 10px;
+}
+
+.franchise-slider .slide-content h3 {
+    font-size: 24px;
+    font-weight: 600;
+    background: linear-gradient(45deg, #d9fdfd, #bda5ff, #fffdfd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 10px;
+}
+
+.franchise-slider .slide-content p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #E0F7FA;
+}
+
+/* Franchise Container (Horizontal) */
+.franchise-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    flex-wrap: wrap;
+}
+
+.franchise-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #C0C0C0;
+    width: 100%;
+    max-width: 550px;
+    transition: transform 0.3s, background 0.3s;
+    text-align: left;
+}
+
+.franchise-item:hover {
+    transform: translateY(-10px);
+    background: rgba(30, 58, 138, 0.1);
+    border-color: #6D28D9;
+}
+
+.franchise-item h3 {
+    font-size: 28px;
+    font-weight: 600;
+    background: linear-gradient(45deg, #00b7ff, #f25ff7, #fffdfd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+}
+
+.franchise-item p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #E0F7FA;
+    margin-top: 15px;
+}
+
+/* Responsividade para Franquias */
+@media (max-width: 768px) {
+    .franchise-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .franchise-item {
+        max-width: 100%;
+    }
+
+    .franchise-slider {
+        height: 300px;
+    }
+
+    .franchise-slider .slide-content h3 {
+        font-size: 20px;
+    }
+
+    .franchise-slider .slide-content p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .franchise-slider {
+        height: 200px;
+    }
+
+    .franchise-slider .slide-content h3 {
+        font-size: 18px;
+    }
+
+    .franchise-slider .slide-content p {
+        font-size: 12px;
+    }
+}
+/* Estilo para a Seção Sobre Nós */
+.sobre {
+    padding: 80px 0px;
+    background: linear-gradient(45deg, rgba(30, 58, 138, 0.7), rgba(109, 40, 217, 0.3));
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #C0C0C0;
+}
+
+/* Parte Superior: Duas Colunas Horizontais Fixas */
+.sobre-top {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 30px auto;
+}
+
+.sobre-column {
+    flex: 0 0 50%; /* Fixa em duas colunas de 50% cada */
+    text-align: left;
+    padding: 20px;
+}
+
+.sobre-column h3 {
+    font-size: 28px;
+    font-weight: 600;
+    background: linear-gradient(45deg, #00b7ff, #f25ff7, #fffdfd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+}
+
+.sobre-column p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #E0F7FA;
+    margin-bottom: 15px;
+}
+
+.sobre-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 1px solid #C0C0C0;
+    transition: transform 0.3s;
+}
+
+.sobre-image:hover {
+    transform: scale(1.03);
+}
+
+/* Parte Inferior: Três Colunas Horizontais Fixas */
+.sobre-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 30px auto;
+}
+
+.sobre-item {
+    flex: 0 0 33.33%; /* Fixa em três colunas de 33.33% cada */
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #C0C0C0;
+    transition: transform 0.3s, background 0.3s;
+    text-align: left;
+}
+
+.sobre-item:hover {
+    transform: translateY(-10px);
+    background: rgba(30, 58, 138, 0.1);
+    border-color: #6D28D9;
+}
+
+.sobre-item h3 {
+    font-size: 24px;
+    font-weight: 600;
+    background: linear-gradient(45deg, #00b7ff, #f25ff7, #fffdfd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 15px 0;
+}
+
+.sobre-item p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #E0F7FA;
+    margin-bottom: 15px;
+}
+
+.sobre-item ul {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.sobre-item ul li {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+    color: #E0F7FA;
+}
+
+.sobre-item ul li:before {
+    content: "✔";
+    background: linear-gradient(45deg, #d9fdfd, #bda5ff, #fffdfd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: absolute;
+    left: 0;
+}
+
+.sobre-item ul li strong {
+    background: linear-gradient(45deg, #d9fdfd, #bda5ff, #fffdfd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 600;
+}
+
+/* Responsividade Sem Empilhamento (Manter Colunas Fixas) */
+@media (max-width: 1200px) {
+    .sobre-top .sobre-column,
+    .sobre-bottom .sobre-item {
+        padding: 15px;
+    }
+
+    .sobre-image {
+        height: 250px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .sobre-top .sobre-column,
+    .sobre-bottom .sobre-item {
+        padding: 10px;
+    }
+
+    .sobre-image {
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sobre-top .sobre-column,
+    .sobre-bottom .sobre-item {
+        padding: 5px;
+    }
+
+    .sobre-image {
+        height: 150px;
+    }
+
+    .sobre-column h3,
+    .sobre-item h3 {
+        font-size: 20px;
+    }
+
+    .sobre-column p,
+    .sobre-item p {
+        font-size: 14px;
+    }
+
+    .sobre-item ul li {
         font-size: 12px;
     }
 }
