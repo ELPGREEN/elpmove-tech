@@ -5,8 +5,9 @@
 }
 
 body {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Roboto', Arial, sans-serif; /* Mudança para Roboto para um look moderno */
     color: #ffffff;
+    background: #0a0a0a; /* Preto mais suave */
     overflow-x: hidden;
     line-height: 1.6;
 }
@@ -25,39 +26,35 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 15px 0;
+    background: rgba(0, 0, 0, 0.85);
     z-index: 10;
+    padding: 3px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .main-width {
-    max-width: 1200px;
+    max-width: 1300px; /* Aumentado para mais espaço */
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 30px;
 }
 
+/* Logo */
 .logo h1 {
     font-size: 28px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    color: #fff;
+    font-weight: 700;
 }
 
-.logo h1 span {
-    color: #00ffcc;
+.logo h5 {
+    font-size: 14px;
+    color: #a0a0a0;
+    font-weight: 300;
 }
 
-.logo p {
-    font-size: 12px;
-    font-weight: 400;
-    color: #00ffcc;
-    letter-spacing: 1px;
-}
-
-/* Menu */
+/* Menu Desktop */
 .nav .menu {
     list-style: none;
     display: flex;
@@ -65,39 +62,40 @@ body {
 }
 
 .nav .menu li {
-    margin: 0 15px;
+    margin: 0 20px;
 }
 
 .nav .menu a {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s;
-    letter-spacing: 1px;
+    font-size: 16px;
+    transition: color 0.3s, transform 0.3s;
 }
 
 .nav .menu a:hover {
-    color: #00ffcc;
+    color: rgb(20, 116, 20); /* Verde da marca */
+    transform: translateY(-2px);
 }
 
 /* Phone Menu */
 .phone-menu {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     cursor: pointer;
 }
 
 .phone-menu span {
-    width: 30px;
-    height: 3px;
+    width: 35px;
+    height: 4px;
     background: #fff;
     transition: all 0.3s;
 }
 
-.phone-menu.open .b1 { transform: rotate(45deg) translate(5px, 5px); }
+.phone-menu.open .b1 { transform: rotate(45deg) translate(6px, 6px); }
 .phone-menu.open .b2 { opacity: 0; }
-.phone-menu.open .b3 { transform: rotate(-45deg) translate(7px, -7px); }
+.phone-menu.open .b3 { transform: rotate(-45deg) translate(8px, -8px); }
 
 /* Seções */
 .section {
@@ -107,170 +105,151 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 100px 20px 20px;
+    padding: 80px 30px;
     text-align: center;
-    opacity: 0;
-    transition: opacity 0.5s;
+    background: rgba(0, 0, 0, 0.4); /* Fundo semi-transparente mais escuro */
+    width: 100vw;
+    margin: 0;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    transition: opacity 0.5s ease;
+}
+
+.section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: rgb(20, 116, 20); /* Verde da marca */
+}
+
+.section p {
+    font-size: 18px;
     max-width: 800px;
-    margin: 0 auto;
+    margin-bottom: 30px;
 }
 
 .section.active {
     opacity: 1;
 }
 
-.section h1 {
-    font-size: 60px;
-    font-weight: 900;
-    margin-bottom: 20px;
-    text-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
-    letter-spacing: 3px;
-    text-transform: uppercase;
+.section.hidden {
+    display: none;
+    opacity: 0;
 }
 
-.section h1 span {
-    color: #00ffcc;
-}
-
-.section h2 {
-    font-size: 40px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.section p {
-    font-size: 18px;
-    opacity: 0.8;
-    margin-bottom: 30px;
-    letter-spacing: 1px;
-}
-
+/* Botão Cosmo */
 .cosmo-btn {
-    padding: 12px 30px;
-    background: linear-gradient(45deg, #00ffcc, #ff00ff);
+    padding: 12px 25px;
+    background: linear-gradient(45deg, rgb(20, 116, 20), #00ffcc); /* Verde da marca com ciano */
     border: none;
     border-radius: 25px;
     color: #fff;
     text-decoration: none;
-    font-weight: 700;
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
-    letter-spacing: 1px;
-    text-transform: uppercase;
 }
 
 .cosmo-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
-}
-
-/* Features */
-.features {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.features span {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px 20px;
-    border-radius: 15px;
-    font-weight: 500;
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(20, 116, 20, 0.5);
 }
 
 /* Product Grid */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-top: 20px;
+    margin-top: 40px;
+    max-width: 1200px;
+    width: 100%;
 }
 
-.product {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
+.product-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
     border-radius: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, background 0.3s;
+    border: 1px solid rgba(20, 116, 20, 0.2);
 }
 
-.product:hover {
+.product-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.product img {
+.product-item img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+    margin-bottom: 15px;
 }
 
-.product h3 {
-    font-size: 24px;
-    margin: 10px 0;
-    letter-spacing: 1px;
-}
-
-.product p {
-    opacity: 0.7;
-}
-
-/* News Grid */
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 20px;
-}
-
-.news-item {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-}
-
-.news-item h3 {
-    font-size: 24px;
+.product-item h4 {
+    font-size: 22px;
+    color: #fff;
     margin-bottom: 10px;
-    letter-spacing: 1px;
 }
 
-.news-item p {
-    opacity: 0.7;
+.product-item p {
+    font-size: 16px;
+    color: #d0d0d0;
 }
 
-/* Contact Form */
+/* Listas */
+.section ul {
+    list-style: none;
+    max-width: 800px;
+    text-align: left;
+    margin: 20px auto;
+}
+
+.section ul li {
+    font-size: 16px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.section ul li:before {
+    content: "✔";
+    color: rgb(20, 116, 20);
+    position: absolute;
+    left: 0;
+}
+
+/* Contato */
+.contact-info {
+    margin: 20px 0;
+}
+
+.contact-info p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
 .contact-form {
+    max-width: 500px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    max-width: 600px;
-    width: 100%;
-    margin-top: 20px;
+    gap: 15px;
 }
 
 .contact-form input,
 .contact-form textarea {
-    padding: 10px;
-    border: none;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     color: #fff;
-    font-family: 'Orbitron', sans-serif;
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-    letter-spacing: 1px;
+    font-size: 16px;
 }
 
 .contact-form textarea {
-    resize: none;
-    height: 150px;
+    min-height: 120px;
+    resize: vertical;
 }
 
 .contact-form button {
@@ -289,7 +268,7 @@ body {
         top: 100%;
         left: 0;
         width: 100%;
-        background: rgba(0, 0, 0, 0.9);
+        background: rgba(0, 0, 0, 0.95);
     }
 
     .nav.active {
@@ -302,23 +281,141 @@ body {
     }
 
     .nav .menu li {
-        margin: 10px 0;
+        margin: 15px 0;
     }
 
     .section {
-        padding: 60px 10px 10px;
-    }
-
-    .section h1 {
-        font-size: 40px;
+        padding: 60px 20px;
     }
 
     .section h2 {
         font-size: 28px;
     }
 
-    .features {
+    .section p {
+        font-size: 16px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 22px;
+    }
+
+    .logo h5 {
+        font-size: 12px;
+    }
+
+    .cosmo-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+/* Footer */
+.footer {
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 40px 30px 20px;
+    width: 100%;
+    margin-top: auto; /* Garante que o footer fique no final da página */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h4 {
+    font-size: 18px;
+    color: rgb(20, 116, 20);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.footer-section p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #d0d0d0;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #d0d0d0;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: rgb(20, 116, 20);
+}
+
+.social-links a {
+    margin-right: 15px;
+    color: #fff;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: rgb(20, 116, 20);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(20, 116, 20, 0.2);
+    margin-top: 20px;
+    font-size: 12px;
+    color: #a0a0a0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-content {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+    }
+
+    .social-links a {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 20px 15px 10px;
+    }
+
+    .footer-section h4 {
+        font-size: 16px;
+    }
+
+    .footer-section p {
+        font-size: 12px;
     }
 }
