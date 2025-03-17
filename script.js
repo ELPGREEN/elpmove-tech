@@ -1,207 +1,142 @@
-// Verificação inicial do canvas
-const canvas = document.getElementById('canvas');
-if (!canvas) {
-    console.error('Canvas element not found!');
-    document.getElementById('canvas-fallback').style.display = 'block';
-} else {
-    console.log('Canvas found, initializing Three.js...');
+let engine, scene, camera;
+
+function initScene() {
+    const canvas = document.getElementById("canvas");
+    engine = new BABYLON.Engine(canvas, true);
+    scene = new BABYLON.Scene(engine);
+    scene.clearColor = new BABYLON.Color4(0, 0, 0.1, 1); // Fundo quase preto com leve azul
+
+    // Câmera
+    camera = new BABYLON.ArcRotateCamera("camera", Math.PI / 2, Math.PI / 2, 50, BABYLON.Vector3.Zero(), scene);
+    camera.attachControl(canvas, true);
+    camera.lowerRadiusLimit = 20;
+    camera.upperRadiusLimit = 100;
+
+    // Iluminação
+    const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+    light.intensity = 0.8;
+
+    const volumetricLight = new BABYLON.SpotLight("volumetricLight", new BABYLON.Vector3(0, 50, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 2, 1, scene);
+    volumetricLight.intensity = 0.5;
+    const glowLayer = new BABYLON.GlowLayer("glow", scene);
+    glowLayer.addIncludedOnlyMesh(volumetricLight);
 }
 
-// Configuração da cena Three.js
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-if (!renderer) {
-    console.error('WebGLRenderer initialization failed!');
-    document.getElementById('canvas-fallback').style.display = 'block';
-} else {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 0);
-    console.log('Renderer initialized successfully');
+function createGeometricBackground() {
+    // Malha hexagonal
+    const hexGrid = BABYLON.MeshBuilder.CreateGround("hexGrid", { width: 200, height: 200, subdivisions: 50 }, scene);
+    const hexMat = new BABYLON.StandardMaterial("hexMat", scene);
+    hexMat.emissiveColor = new BABYLON.Color3(0, 0.8, 0.2); // Verde suave para combinar com a marca
+    hexMat.wireframe = true;
+    hexGrid.material = hexMat;
+
+    // Nebulosa de fundo
+    const nebula = BABYLON.MeshBuilder.CreatePlane("nebula", { size: 250 }, scene);
+    nebula.position.z = -100;
+    const nebulaMat = new BABYLON.StandardMaterial("nebulaMat", scene);
+    nebulaMat.emissiveTexture = new BABYLON.Texture("https://www.babylonjs-playground.com/textures/nebula.jpg", scene); // Substitua por uma textura real
+    nebulaMat.emissiveColor = new BABYLON.Color3(0.1, 0.5, 0.3); // Tons verdes sutis
+    nebulaMat.alpha = 0.6;
+    nebula.material = nebulaMat;
+
+    // Partículas estelares
+    const particleSystem = new BABYLON.ParticleSystem("stars", 2000, scene);
+    particleSystem.particleTexture = new BABYLON.Texture("https://www.babylonjs-playground.com/textures/flare.png", scene);
+    particleSystem.emitter = new BABYLON.Vector3(0, 0, 0);
+    particleSystem.minEmitBox = new BABYLON.Vector3(-100, -50, -100);
+    particleSystem.maxEmitBox = new BABYLON.Vector3(100, 50, 100);
+    particleSystem.color1 = new BABYLON.Color4(1, 1, 1, 0.8);
+    particleSystem.color2 = new BABYLON.Color4(0, 0.8, 0.2, 0.5); // Verde da marca
+    particleSystem.minSize = 0.1;
+    particleSystem.maxSize = 0.3;
+    particleSystem.emitRate = 500;
+    particleSystem.updateSpeed = 0.01;
+    particleSystem.start();
+
+    return { hexGrid, nebula };
 }
 
-// Iluminação
-const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
-scene.add(ambientLight);
-const directionalLight = new THREE.DirectionalLight(0x00ffcc, 0.7);
-directionalLight.position.set(0, 100, 100);
-scene.add(directionalLight);
-console.log('Lights added to scene');
+function animateBackground(elements) {
+    let time = 0;
+    scene.registerBeforeRender(() => {
+        time += 0.01;
 
-// Malha Hexagonal
-const hexGrid = new THREE.Group();
-const hexSize = 10;
-const hexHeight = hexSize * Math.sqrt(3) / 2;
-const cols = 50;
-const rows = 30;
-const positions = [];
-const particles = [];
+        // Movimento da malha hexagonal
+        const waveHeight = Math.sin(time) * 5;
+        elements.hexGrid.position.y = waveHeight;
+        elements.hexGrid.rotation.x = Math.sin(time * 0.5) * 0.1;
+        elements.hexGrid.rotation.z = Math.cos(time * 0.3) * 0.1;
 
-for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
-        const x = col * hexSize * 1.5;
-        const y = row * hexHeight * 2 + (col % 2 === 0 ? 0 : hexHeight);
-        const z = 0;
-
-        // Criar linhas do hexágono
-        const points = [];
-        for (let i = 0; i < 7; i++) {
-            const angle = (i / 6) * Math.PI * 2;
-            points.push(new THREE.Vector3(
-                x + hexSize * Math.cos(angle),
-                y + hexSize * Math.sin(angle),
-                z
-            ));
-        }
-        const hexGeometry = new THREE.BufferGeometry().setFromPoints(points);
-        const hexMaterial = new THREE.LineBasicMaterial({ color: 0x00ffcc, transparent: true, opacity: 0.3 });
-        const hex = new THREE.Line(hexGeometry, hexMaterial);
-        hexGrid.add(hex);
-
-        // Armazenar posições para animação
-        positions.push({ x, y, baseZ: z, hex });
-
-        // Criar partícula no centro do hexágono
-        const particleGeometry = new THREE.SphereGeometry(1, 8, 8);
-        const particleMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffcc, transparent: true, opacity: 0.8 });
-        const particle = new THREE.Mesh(particleGeometry, particleMaterial);
-        particle.position.set(x, y, z);
-        hexGrid.add(particle);
-        particles.push(particle);
-    }
-}
-
-hexGrid.position.set(-(cols * hexSize * 1.5) / 2, -(rows * hexHeight * 2) / 2, 0);
-hexGrid.rotation.x = Math.PI / 4;
-scene.add(hexGrid);
-console.log('Hexagonal grid added to scene');
-
-// Fundo Estelar
-const starGeometry = new THREE.SphereGeometry(0.5, 8, 8);
-const starMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
-const stars = new THREE.InstancedMesh(starGeometry, starMaterial, 1000);
-for (let i = 0; i < 1000; i++) {
-    const position = new THREE.Vector3(
-        (Math.random() - 0.5) * 2000,
-        (Math.random() - 0.5) * 2000,
-        (Math.random() - 0.5) * 2000
-    );
-    const matrix = new THREE.Matrix4().makeTranslation(position.x, position.y, position.z);
-    stars.setMatrixAt(i, matrix);
-}
-scene.add(stars);
-console.log('Stars added to scene');
-
-camera.position.set(0, 0, 200);
-camera.lookAt(0, 0, 0);
-
-// Animações
-gsap.to(stars.rotation, {
-    y: "+=6.28",
-    duration: 50,
-    ease: "linear",
-    repeat: -1,
-    onStart: () => console.log('Stars rotation animation started')
-});
-
-let time = 0;
-positions.forEach((pos, i) => {
-    gsap.to(pos.hex.position, {
-        z: () => pos.baseZ + Math.sin(time + (pos.x + pos.y) * 0.05) * 10,
-        duration: 2,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-        delay: i * 0.01,
-        onUpdate: () => {
-            particles[i].position.z = pos.hex.position.z;
-        }
+        // Movimento da nebulosa
+        elements.nebula.rotation.z += 0.002;
+        elements.nebula.material.emissiveTexture.uOffset += 0.001;
+        elements.nebula.material.emissiveTexture.vOffset += 0.0005;
     });
-});
+}
 
-particles.forEach((particle, i) => {
-    gsap.to(particle.material, {
-        opacity: () => Math.random() > 0.5 ? 0.8 : 0.2,
-        duration: 1,
-        ease: "power1.inOut",
-        repeat: -1,
-        delay: i * 0.02
-    });
-});
-
-// Menu Mobile
-const phoneMenu = document.querySelector('.phone-menu');
-const nav = document.querySelector('.nav');
-phoneMenu.addEventListener('click', () => {
-    phoneMenu.classList.toggle('open');
-    nav.classList.toggle('active');
-    console.log('Mobile menu toggled');
-});
-
-// Interação com Rolagem
-let lastScrollTop = 0;
-window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollTop / maxScroll;
-
-    camera.position.z = 200 + scrollFraction * 100;
-    camera.position.y = scrollFraction * 50;
-
-    stars.material.opacity = 0.8 - scrollFraction * 0.5;
-    gsap.to(stars.scale, {
-        x: 1 + scrollFraction * 0.5,
-        y: 1 + scrollFraction * 0.5,
-        z: 1 + scrollFraction * 0.5,
-        duration: 0.1
-    });
-
+function showSection(sectionId) {
     document.querySelectorAll('.section').forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
-            section.classList.add('active');
-        } else {
-            section.classList.remove('active');
+        section.classList.add('hidden');
+        section.classList.remove('active');
+    });
+    const targetSection = document.getElementById(sectionId);
+    targetSection.classList.remove('hidden');
+    targetSection.classList.add('active');
+
+    // Animação com GSAP
+    gsap.fromTo(targetSection, 
+        { opacity: 0, y: 50 }, 
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+    );
+
+    // Animação dos itens de produto (se houver)
+    const products = targetSection.querySelectorAll('.product-item');
+    if (products.length > 0) {
+        gsap.from(products, {
+            opacity: 0,
+            y: 30,
+            stagger: 0.2,
+            duration: 0.6,
+            ease: "power2.out",
+            delay: 0.3
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initScene();
+    const backgroundElements = createGeometricBackground();
+    animateBackground(backgroundElements);
+    engine.runRenderLoop(() => scene.render());
+
+    // Navegação Desktop
+    document.querySelectorAll('.menu a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sectionId = link.getAttribute('href').substring(1);
+            showSection(sectionId);
+        });
+    });
+
+    // Menu Mobile
+    const phoneMenu = document.querySelector('.phone-menu');
+    const nav = document.querySelector('.nav');
+    phoneMenu.addEventListener('click', () => {
+        nav.classList.toggle('active');
+        phoneMenu.classList.toggle('open');
+
+        if (nav.classList.contains('active')) {
+            gsap.fromTo(nav, 
+                { opacity: 0, y: -20 }, 
+                { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+            );
         }
     });
 
-    lastScrollTop = scrollTop;
+    // Mostrar a seção inicial
+    showSection('home');
 });
-
-// Interação com Cliques no Menu
-document.querySelectorAll('.interact').forEach(element => {
-    element.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = element.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        window.scrollTo({
-            top: targetSection.offsetTop,
-            behavior: 'smooth'
-        });
-        document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-        targetSection.classList.add('active');
-        console.log(`Navigated to section: ${targetId}`);
-    });
-});
-
-// Loop de Animação
-function animate() {
-    if (!renderer) {
-        console.error('Renderer not available, stopping animation');
-        return;
-    }
-    requestAnimationFrame(animate);
-    time += 0.01;
-    renderer.render(scene, camera);
-    console.log('Rendering frame...');
-}
-
-animate();
 
 window.addEventListener('resize', () => {
-    if (!renderer) return;
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    console.log('Window resized');
+    engine.resize();
 });
