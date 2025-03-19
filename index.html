@@ -3,419 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ELP-MOVE - Franquia líder em micromobilidade elétrica na Itália, oferecendo scooters e e-bikes sustentáveis para aluguel e venda.">
-    <meta name="keywords" content="micromobilidade, scooters elétricas, e-bikes, sustentabilidade, franquia, mobilidade urbana">
-    <meta name="author" content="ELP-MOVE Srl">
-    <title>ELP-MOVE - Franquia de Mobilidade Sustentável</title>
+    <title>ELP-MOVE</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Babylon.js -->
-    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Cabeçalho com Menu -->
-    <div class="header">
-        <div class="main-width">
-            <!-- Phone Menu -->
-            <div class="phone-menu" aria-label="Abrir menu de navegação">
-                <span class="b1"></span>
-                <span class="b2"></span>
-                <span class="b3"></span>
-            </div>
-
-            <!-- Logo Section -->
-            <div class="logo">
-                <a href="#home">
-                    <h1><span><strong style="color: rgb(20, 116, 20);">ELP</strong>MOVE</span></h1>
-                </a>
-                <h5 style="margin-top: 5px;">Líder em Mobilidade Sustentável</h5>
-            </div>
-
-            <!-- Navigation Menu -->
-            <nav class="nav">
-                <ul class="menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#produtos">Produtos</a></li>
-                    <li><a href="#franquia">Modelo de Franquia</a></li>
-                    <li><a href="#beneficios">Benefícios para Franqueados</a></li>
-                    <li><a href="#sustentabilidade">Sustentabilidade</a></li>
-                    <li><a href="#sobre">Sobre Nós</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-    <!-- Canvas para Babylon.js -->
     <canvas id="canvas"></canvas>
-
-    <!-- Seções da Página -->
+    <header>
+        <div class="logo">
+            <h1>ELP-MOVE</h1>
+            <p>Líder em Mobilidade Sustentável</p>
+        </div>
+        <button class="menu-toggle">☰</button>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Produtos</a></li>
+            <li><a href="#franquia">Franquia</a></li>
+            <li><a href="#sustainability">Sustentabilidade</a></li>
+            <li><a href="#contact">Contato</a></li>
+            <li><a href="#navegue">Navegue pelos Planetas</a></li>
+        </ul>
+    </header>
     <main>
-        <!-- Home -->
-        <section id="home" class="section active">
-            <img src="image/logo.png" style="width: 30%;" alt="Logo da ELP-MOVE">
-            <br><br>
-            <h1>ELP-MOVE - A Revolução da Mobilidade Sustentável</h1>
-            <p>Somos a franquia líder em micromobilidade elétrica na Itália, oferecendo soluções inovadoras de aluguel e venda de scooters e e-bikes. Nossa missão é transformar a mobilidade urbana e turística, combinando lucro com sustentabilidade.</p>
-            <a href="#produtos" class="cosmo-btn">Conheça Nossos Produtos</a>
+        <section id="home">
+            <h1>Bem-vindo à ELP-MOVE</h1>
+            <p>Líder em mobilidade sustentável, oferecendo soluções inovadoras para um futuro mais verde.</p>
+            <a href="#navegue" class="btn">Explore o Universo ELP-MOVE</a>
         </section>
 
-        <!-- Produtos -->
-        <section id="produtos" class="section hidden">
-            <div class="banner-container">
-                <video autoplay muted loop playsinline class="banner-video">
-                    <source src="video/1712538379970608.mp4" type="video/mp4">
-                    Seu navegador não suporta vídeos HTML5.
-                </video>
-                <div class="banner-overlay"></div>
-                <div class="banner-content">
-                    <img src="image/logo.png" style="width: 10%;" alt="Logo da ELP-MOVE">
-                    <br><br>
-                    <h2 class="banner-title">Nossos Produtos</h2>
-                    <p class="banner-subtitle">Descubra scooters elétricas e e-bikes de alta qualidade da Kixin Electronics, perfeitas para aluguel e venda.</p>
-                    <a href="#franquia" class="cosmo-btn banner-btn">Saiba Mais</a>
+        <section id="products">
+            <h2>Nossos Produtos</h2>
+            <div class="product-grid">
+                <div class="product">
+                    <img src="https://via.placeholder.com/150" alt="Produto 1">
+                    <h3>Veículo Elétrico Eco</h3>
+                    <p>Um carro elétrico sustentável para o dia a dia.</p>
                 </div>
-            </div>
-            
-            <div class="products-content">
-                <h3>Scooters Elétricas</h3>
-                <div class="product-grid">
-                    <div class="product-item">
-                        <img src="image/slideshow-x9-mob.jpg" alt="Scooter Elétrica X8 com Bateria Removível">
-                        <h4>X8 - Scooter Elétrica com Bateria Removível</h4>
-                        <p>Ideal para uso urbano e turístico, a X8 oferece uma bateria removível de alta capacidade, velocidade máxima de 45 km/h e autonomia de até 60 km. Perfeita para aluguel por hora (€1/10min) ou dia (€10), e também disponível para venda direta ou assinatura (€30/mês).</p>
-                        <p><strong>Preço de Venda:</strong> €1.200 (com incentivos fiscais, reduzido para €720)</p>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <a href="downloads/catalogo-elp-move.pdf" class="cosmo-btn" download>Baixar Catálogo</a>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="image/slideshow-02-mob.jpg" alt="Scooter Elétrica de Luxo X9">
-                        <h4>X9 - Scooter Elétrica de Luxo</h4>
-                        <p>Com design premium e desempenho superior, a X9 é ideal para uso corporativo e turístico de alta demanda. Velocidade máxima de 60 km/h e autonomia de até 100 km. Disponível para aluguel, venda direta e assinatura.</p>
-                        <p><strong>Preço de Venda:</strong> €1.500 (com incentivos fiscais, reduzido para €900)</p>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <a href="downloads/catalogo-elp-move.pdf" class="cosmo-btn" download>Baixar Catálogo</a>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="image/slideshow-04-mob.jpg" alt="Scooter Elétrica Portátil Dobrável">
-                        <h4>X10 - Scooter Elétrica Portátil Dobrável</h4>
-                        <p>Leve e compacta, a X10 é perfeita para deslocamentos urbanos e viagens. Velocidade máxima de 45 km/h e autonomia de até 50 km. Ideal para aluguel e venda direta.</p>
-                        <p><strong>Preço de Venda:</strong> €1.000 (com incentivos fiscais, reduzido para €600)</p>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <a href="downloads/catalogo-elp-move.pdf" class="cosmo-btn" download>Baixar Catálogo</a>
-                        </div>
-                    </div>
-                    <!-- Novo Produto 1: Scooter Elétrica de Longo Alcance -->
-                    <div class="product-item">
-                        <img src="image/slideshow-05-mob.jpg" alt="Scooter Elétrica X11 de Longo Alcance">
-                        <h4>X11 - Scooter Elétrica de Longo Alcance</h4>
-                        <p>Desenvolvida para viagens prolongadas, a X11 oferece uma bateria de alta capacidade com velocidade máxima de 50 km/h e autonomia de até 120 km. Ideal para aluguel por dia ou venda direta, com opção de assinatura (€40/mês).</p>
-                        <p><strong>Preço de Venda:</strong> €1.800 (com incentivos fiscais, reduzido para €1.080)</p>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <a href="downloads/catalogo-elp-move.pdf" class="cosmo-btn" download>Baixar Catálogo</a>
-                        </div>
-                    </div>
-                    <!-- Novo Produto 2: Scooter Elétrica Off-Road -->
-                    <div class="product-item">
-                        <img src="image/slideshow-06-mob.jpg" alt="Scooter Elétrica X12 Off-Road">
-                        <h4>X12 - Scooter Elétrica Off-Road</h4>
-                        <p>Projetada para terrenos irregulares, a X12 possui pneus todo-terreno, velocidade máxima de 40 km/h e autonomia de até 70 km. Perfeita para aventuras ao ar livre e disponível para venda direta.</p>
-                        <p><strong>Preço de Venda:</strong> €1.400 (com incentivos fiscais, reduzido para €840)</p>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <a href="downloads/catalogo-elp-move.pdf" class="cosmo-btn" download>Baixar Catálogo</a>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="image/slideshow-06-mob.jpg" alt="Scooter Elétrica X12 Off-Road">
-                        <h4>X13 - Scooter Elétrica Off-Road</h4>
-                        <p>Projetada para terrenos irregulares, a X13 possui pneus todo-terreno, velocidade máxima de 40 km/h e autonomia de até 70 km. Perfeita para aventuras ao ar livre e disponível para venda direta.</p>
-                        <p><strong>Preço de Venda:</strong> €1.400 (com incentivos fiscais, reduzido para €840)</p>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <a href="downloads/catalogo-elp-move.pdf" class="cosmo-btn" download>Baixar Catálogo</a>
-                        </div>
-                    </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/150" alt="Produto 2">
+                    <h3>Bicicleta Elétrica</h3>
+                    <p>Mobilidade urbana com zero emissão de carbono.</p>
                 </div>
-                <br><br><br>
-                <h3>E-Bikes</h3>
-                <div class="product-grid">
-                    <div class="product-item">
-                        <img src="image/slideshow-01-mob.jpg" alt="E-Bike Urbana H1 com Bateria Removível">
-                        <h4>H1 - E-Bike Urbana com Bateria Removível</h4>
-                        <p>Projetada para mobilidade urbana, a H1 combina tecnologia de pintura automotiva com uma bateria removível patenteada. Velocidade máxima de 25 km/h e autonomia de até 70 km. Disponível para aluguel e venda direta.</p>
-                        <p><strong>Preço de Venda:</strong> €1.800 (com incentivos fiscais, reduzido para €1.080)</p>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <a href="downloads/catalogo-elp-move.pdf" class="cosmo-btn" download>Baixar Catálogo</a>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="image/slideshow-x5-mob.jpg" alt="E-Bike Urbana Inteligente H2">
-                        <h4>H2 - E-Bike Urbana Inteligente</h4>
-                        <p>Uma e-bike premium para uso urbano, com design elegante e tecnologia inteligente. Velocidade máxima de 25 km/h e autonomia de até 80 km. Ideal para aluguel, venda direta e assinatura corporativa.</p>
-                        <p><strong>Preço de Venda:</strong> €2.000 (com incentivos fiscais, reduzido para €1.200)</p>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <a href="downloads/catalogo-elp-move.pdf" class="cosmo-btn" download>Baixar Catálogo</a>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="image/slideshow-03-mob.jpg" alt="E-Bike de Montanha Portátil">
-                        <h4>Q3 - E-Bike de Montanha Portátil</h4>
-                        <p>Perfeita para terrenos acidentados e aventuras ao ar livre, a Q3 oferece robustez e desempenho. Velocidade máxima de 25 km/h e autonomia de até 60 km. Disponível para venda direta.</p>
-                        <p><strong>Preço de Venda:</strong> €2.500 (com incentivos fiscais, reduzido para €1.500)</p>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <a href="downloads/catalogo-elp-move.pdf" class="cosmo-btn" download>Baixar Catálogo</a>
-                        </div>
-                    </div>
-                    <!-- Novo Produto 3: E-Bike de Carga -->
-                    <div class="product-item">
-                        <img src="image/slideshow-07-mob.jpg" alt="E-Bike de Carga H3">
-                        <h4>H3 - E-Bike de Carga</h4>
-                        <p>Ideal para entregas urbanas, a H3 possui uma plataforma de carga robusta, velocidade máxima de 25 km/h e autonomia de até 90 km. Disponível para venda direta e aluguel comercial.</p>
-                        <p><strong>Preço de Venda:</strong> €2.300 (com incentivos fiscais, reduzido para €1.380)</p>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <a href="downloads/catalogo-elp-move.pdf" class="cosmo-btn" download>Baixar Catálogo</a>
-                        </div>
-                    </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/150" alt="Produto 3">
+                    <h3>Carregador Solar</h3>
+                    <p>Energia limpa para seus dispositivos.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Modelo de Franquia -->
-        <section id="franquia" class="section hidden">
-            <!-- Banner com Slide Automático (acima das franquias) -->
-            <div class="franchise-slider">
-                <div class="slide active">
-                    <img src="image/banner-hx.jpg" alt="Franquia ELP-MOVE em Ação">
-                    <div class="slide-content">
-                        <h3>Expanda com a ELP-MOVE</h3>
-                        <p>Faça parte da revolução da mobilidade sustentável!</p>
-                    </div>
-                </div>
-                <div class="slide">
-                    <img src="image/contact-banner.jpg" alt="Scooters Elétricas em Cidade Turística">
-                    <div class="slide-content">
-                        <h3>Mobilidade Sustentável</h3>
-                        <p>Transforme cidades com nossas soluções ecológicas.</p>
-                    </div>
-                </div>
-                <div class="slide">
-                    <img src="image/product-1-banner.jpg" alt="Equipe ELP-MOVE em Ação">
-                    <div class="slide-content">
-                        <h3>Suporte Completo</h3>
-                        <p>Tenha o apoio necessário para crescer com a gente.</p>
-                    </div>
-                </div>
-                <!-- Botões de Navegação -->
-                <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
-                <!-- Indicadores de Slide (Dots) -->
-                <div class="slider-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-            </div>
-
-            <h2>Modelo de Franquia</h2>
-            <p>A ELP-MOVE é uma franquia consolidada que combina aluguel e venda de scooters elétricas e e-bikes, oferecendo um modelo de negócios híbrido e escalável. Nossas franquias operam em três formatos principais, atendendo ao mercado turístico, urbano e corporativo:</p>
-
-            <!-- Container para Franquias em Três Colunas -->
-            <div class="franchise-container">
-                <div class="franchise-item">
-                    <h3>Franquia Turística</h3>
-                    <ul>
-                        <li><strong>Investimento Inicial:</strong> €45.000 - €65.000</li>
-                        <li><strong>Frota Inicial:</strong> 20 scooters</li>
-                        <li><strong>Receita Mensal Estimada:</strong> €15.000 - €25.000</li>
-                        <li><strong>Payback Estimado:</strong> 10-12 meses</li>
-                    </ul>
-                    <p>Focada em regiões turísticas de alto fluxo, como Costa Amalfitana e Veneza, oferecendo aluguel diário, vendas pontuais e assinaturas para turistas.</p>
-                </div>
-                <div class="franchise-item">
-                    <h3>Franquia Urbana</h3>
-                    <ul>
-                        <li><strong>Investimento Inicial:</strong> €90.000 - €115.000</li>
-                        <li><strong>Frota Inicial:</strong> 50 scooters</li>
-                        <li><strong>Receita Mensal Estimada:</strong> €40.000 - €60.000</li>
-                        <li><strong>Payback Estimado:</strong> 12-14 meses</li>
-                    </ul>
-                    <p>Direcionada a grandes cidades, como Roma e Milão, atendendo tanto o público local quanto empresas, com aluguel, vendas e assinaturas corporativas.</p>
-                </div>
-                <div class="franchise-item">
-                    <h3>Franquia Corporativa</h3>
-                    <ul>
-                        <li><strong>Investimento Inicial:</strong> €150.000 - €200.000</li>
-                        <li><strong>Frota Inicial:</strong> 100 scooters</li>
-                        <li><strong>Receita Mensal Estimada:</strong> €80.000 - €120.000</li>
-                        <li><strong>Payback Estimado:</strong> 15-18 meses</li>
-                    </ul>
-                    <p>Destinada a grandes empresas e corporações, oferecendo soluções personalizadas de mobilidade elétrica para frotas internas e parcerias corporativas.</p>
-                </div>
-            </div>
-
-            <a href="#beneficios" class="cosmo-btn">Conheça os Benefícios para Franqueados</a>
+        <section id="franquia">
+            <h2>Seja um Franqueado ELP-MOVE</h2>
+            <p>Junte-se à nossa missão de transformar a mobilidade sustentável. Oferecemos suporte completo e um modelo de negócio lucrativo.</p>
+            <a href="#contact" class="btn">Entre em Contato</a>
         </section>
 
-        <!-- Benefícios para Franqueados -->
-        <section id="beneficios" class="section hidden beneficios">
-            <h2>Benefícios para Franqueados</h2>
-            <p>Como franqueado da ELP-MOVE, você terá acesso a uma série de vantagens que garantem o sucesso do seu negócio:</p>
-            <ul>
-                <li><strong>Suporte Completo:</strong> Treinamento, marketing e assistência operacional contínua.</li>
-                <li><strong>Incentivos Fiscais:</strong> Aproveitamento de programas como o Transizione 5.0, que reduz o custo das scooters em 40% e dos hubs de recarga em 50%.</li>
-                <li><strong>Modelo Híbrido:</strong> Diversificação de receita com aluguel, vendas e assinaturas, maximizando o retorno sobre o investimento.</li>
-                <li><strong>Produtos de Alta Qualidade:</strong> Parceria exclusiva com a Kixin Electronics, garantindo scooters e e-bikes inovadoras e duráveis.</li>
-                <li><strong>Impacto ESG:</strong> Contribuição para a sustentabilidade, alinhada às metas da UE de redução de emissões.</li>
-            </ul>
-            <a href="#contato" class="cosmo-btn">Entre em Contato para Ser um Franqueado</a>
+        <section id="sustainability">
+            <h2>Sustentabilidade</h2>
+            <div id="sustainability-stats"></div>
         </section>
 
-        <!-- Sustentabilidade -->
-        <section id="sustentabilidade" class="section hidden">
-            <div class="banner-container">
-                <video autoplay muted loop playsinline class="banner-video">
-                    <source src="video/1712538765394343.mp4" type="video/mp4">
-                    Seu navegador não suporta vídeos HTML5.
-                </video>
-                <div class="banner-overlay"></div>
-                <div class="banner-content">
-                    <img src="image/logo.png" style="width: 10%;" alt="Logo da ELP-MOVE">
-                    <br><br>
-                    <h2 class="banner-title">Sustentabilidade</h2>
-                    <p class="banner-subtitle">A ELP-MOVE está comprometida com a mobilidade sustentável, reduzindo a pegada de carbono e promovendo um futuro mais verde.</p>
-                    <a href="#franquia" class="cosmo-btn banner-btn">Saiba Mais</a>
-                </div>
-            </div>
-        
-            <h2 class="banner-title">Nossas iniciativas incluem:</h2>
-            <ul>
-                <li><strong>Redução de Emissões:</strong> Substituímos carros a combustão por scooters e e-bikes elétricas, reduzindo 10-15 toneladas de CO2 por franquia anualmente.</li>
-                <li><strong>Incentivos Governamentais:</strong> Aproveitamos €4,6 bilhões em incentivos italianos para a transição elétrica até 2030.</li>
-                <li><strong>Parcerias Estratégicas:</strong> Trabalhamos com líderes do setor, como a Kixin Electronics, para garantir produtos eco-friendly e inovadores.</li>
-            </ul>
-            <a href="#sobre" class="cosmo-btn">Saiba Mais Sobre Nossa Missão</a>
-        </section>
-
-        <!-- Sobre Nós -->
-        <section id="sobre" class="section hidden sobre">
-            <div class="banner-container">
-                <video autoplay muted loop playsinline class="banner-video">
-                    <source src="video/H1-16：9无字幕_onekeybatch.mp4" type="video/mp4">
-                    Seu navegador não suporta vídeos HTML5.
-                </video>
-                <div class="banner-overlay"></div>
-                <div class="banner-content">
-                    <img src="image/logo.png" style="width: 10%;" alt="Logo da ELP-MOVE">
-                    <br><br>
-                    <h2 class="banner-title">Nossos Produtos</h2>
-                    <p class="banner-subtitle">Descubra scooters elétricas e e-bikes de alta qualidade da Kixin Electronics, perfeitas para aluguel e venda.</p>
-                    <a href="#franquia" class="cosmo-btn banner-btn">Saiba Mais</a>
-                </div>
-            </div>
-            <br><br><br>
-            <h2>Sobre a ELP-MOVE</h2>
-            <p>A ELP-MOVE é a franquia líder em micromobilidade elétrica na Itália, com operações consolidadas em cidades como Roma, Milão e destinos turísticos como Costa Amalfitana e Veneza. Nossa missão é transformar a mobilidade urbana e turística, oferecendo soluções inovadoras que combinam lucro com sustentabilidade.</p>
-
-            <!-- Parte Superior: Duas Colunas Horizontais -->
-            <div class="sobre-top">
-                <div class="sobre-column">
-                    <h3>Nossa História</h3>
-                    <p>Fundada em 2018 por Ericson Piccoli, a ELP-MOVE nasceu com o objetivo de revolucionar a mobilidade urbana e turística na Itália. Inicialmente focada em aluguel de scooters elétricas em destinos turísticos, a empresa expandiu para grandes centros urbanos, atendendo público local e corporativo. Hoje, com mais de 50 franquias e uma frota de 5.000 veículos elétricos, somos referência em micromobilidade sustentável na Europa.</p>
-                    <p>Nosso crescimento é impulsionado por uma visão clara: oferecer alternativas ecológicas e lucrativas, alinhando tecnologia de ponta com responsabilidade ambiental, e investindo em parcerias estratégicas com líderes como Kixin Electronics.</p>
-                </div>
-                <div class="sobre-column">
-                    <img src="image/contact-banner-m.jpg" alt="Equipe da ELP-MOVE em 2018" class="sobre-image">
-                </div>
-            </div>
-
-            <!-- Parte Inferior: Três Colunas Horizontais -->
-            <div class="sobre-bottom">
-                <div class="sobre-item">
-                    <img src="image/1-220620144421648.jpg" alt="Equipe de Liderança da ELP-MOVE" class="sobre-image">
-                    <h3>Nossa Missão</h3>
-                    <p>Transformar a mobilidade urbana e turística com soluções elétricas inovadoras, visando reduzir a pegada de carbono em 20% nas cidades onde atuamos até 2030, promovendo acessibilidade e sustentabilidade para todos.</p>
-                </div>
-                <div class="sobre-item">
-                    <img src="image/Imagem12.png" alt="Equipe de Liderança da ELP-MOVE" class="sobre-image">
-                    <h3>Nossa Visão</h3>
-                    <p>Tornar-nos a maior rede global de micromobilidade elétrica até 2035, presente em mais de 500 cidades, oferecendo soluções acessíveis, eco-friendly e integradas a políticas públicas de transporte sustentável.</p>
-                </div>
-                <div class="sobre-item">
-                    <br><br><br>
-                    <h3>Equipe de Liderança</h3>
-                    <p>Nosso sucesso é liderado por profissionais experientes:</p>
-                    <ul>
-                        <li><strong>Ericson Piccoli – Fundador e CEO:</strong> 8 anos em franquias e expansão internacional, visionário da micromobilidade.</li>
-                        <li><strong>Dario Junior – Diretor de Desenvolvimento:</strong> 15 anos em captação de negócios e parcerias estratégicas.</li>
-                        <li><strong>Laura Bianchi – Diretora de Sustentabilidade:</strong> 10 anos em projetos ambientais, especialista em ESG.</li>
-                        <li><strong>Marco Rossi – CFO:</strong> 12 anos em finanças corporativas, responsável por estratégias de investimento.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <a href="#contato" class="cosmo-btn">Entre em Contato</a>
-        </section>
-
-        <!-- Contato -->
-        <section id="contato" class="section hidden">
+        <section id="contact">
             <h2>Contato</h2>
-            <p>Entre em contato conosco para mais informações, suporte ou para se tornar um franqueado.</p>
-            <div class="contact-info">
-                <p><strong>Email:</strong> <a href="mailto:support@elpmove.com">support@elpmove.com</a></p>
-                <p><strong>Endereço:</strong> Strada per Solero 6, 15048, Valenza, Italia</p>
-                <p><strong>Website:</strong> <a href="http://www.elpmove.com" target="_blank" rel="noopener noreferrer">www.elpmove.com</a></p>
-            </div>
-            <form class="contact-form">
-                <input type="text" placeholder="Seu Nome" required>
-                <input type="email" placeholder="Seu Email" required>
-                <textarea placeholder="Sua Mensagem" required></textarea>
-                <button type="submit" class="cosmo-btn">Enviar Mensagem</button>
+            <form id="contact-form">
+                <input type="text" placeholder="Nome" data-storage="name" required>
+                <input type="email" placeholder="Email" data-storage="email" required>
+                <textarea placeholder="Mensagem" data-storage="message" required></textarea>
+                <button type="submit" class="btn">Enviar</button>
             </form>
         </section>
+
+        <section id="navegue">
+            <h2>Navegue pelos Planetas</h2>
+            <button class="cosmo-btn" data-galaxy="green">Green Technology</button>
+            <button class="cosmo-btn" data-galaxy="move">ELP Move Mobilidade</button>
+        </section>
+
+        <section id="intro">
+            <h2 id="intro-title"></h2>
+            <p id="intro-desc"></p>
+            <div id="direction-buttons"></div>
+            <button class="btn" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+
+        <section id="green-planet-0">
+            <h2>Planeta Verde</h2>
+            <p>Tecnologia sustentável para um futuro melhor.</p>
+            <button class="btn" data-next="1">Próximo Planeta</button>
+            <button class="btn" data-action="back">Voltar</button>
+        </section>
+        <section id="green-planet-1">
+            <h2>Planeta Solar</h2>
+            <p>Energia solar para mobilidade sustentável.</p>
+            <button class="btn" data-next="2">Próximo Planeta</button>
+            <button class="btn" data-prev="0">Planeta Anterior</button>
+            <button class="btn" data-action="back">Voltar</button>
+        </section>
+        <section id="green-planet-2">
+            <h2>Planeta Eco-Tech</h2>
+            <p>Inovações ecológicas para o planeta.</p>
+            <button class="btn" data-next="3">Próximo Planeta</button>
+            <button class="btn" data-prev="1">Planeta Anterior</button>
+            <button class="btn" data-action="back">Voltar</button>
+        </section>
+        <section id="green-planet-3">
+            <h2>Planeta Água</h2>
+            <p>Soluções para conservação de recursos hídricos.</p>
+            <button class="btn" data-next="4">Próximo Planeta</button>
+            <button class="btn" data-prev="2">Planeta Anterior</button>
+            <button class="btn" data-action="back">Voltar</button>
+        </section>
+        <section id="green-planet-4">
+            <h2>Planeta Ar</h2>
+            <p>Tecnologia para melhorar a qualidade do ar.</p>
+            <button class="btn" data-prev="3">Planeta Anterior</button>
+            <button class="btn" data-action="back">Voltar</button>
+        </section>
+
+        <section id="move-planet-0">
+            <h2>Planeta Eco-Trans</h2>
+            <p>Transporte ecológico para cidades.</p>
+            <button class="btn" data-next="1">Próximo Planeta</button>
+            <button class="btn" data-action="back">Voltar</button>
+        </section>
+        <section id="move-planet-1">
+            <h2>Planeta Veloz</h2>
+            <p>Mobilidade rápida e sustentável.</p>
+            <button class="btn" data-next="2">Próximo Planeta</button>
+            <button class="btn" data-prev="0">Planeta Anterior</button>
+            <button class="btn" data-action="back">Voltar</button>
+        </section>
+        <section id="move-planet-2">
+            <h2>Planeta Urbano</h2>
+            <p>Soluções para mobilidade urbana.</p>
+            <button class="btn" data-next="3">Próximo Planeta</button>
+            <button class="btn" data-prev="1">Planeta Anterior</button>
+            <button class="btn" data-action="back">Voltar</button>
+        </section>
+        <section id="move-planet-3">
+            <h2>Planeta Turismo</h2>
+            <p>Turismo sustentável com ELP-MOVE.</p>
+            <button class="btn" data-next="4">Próximo Planeta</button>
+            <button class="btn" data-prev="2">Planeta Anterior</button>
+            <button class="btn" data-action="back">Voltar</button>
+        </section>
+        <section id="move-planet-4">
+            <h2>Planeta Conectado</h2>
+            <p>Conectividade para mobilidade inteligente.</p>
+            <button class="btn" data-prev="3">Planeta Anterior</button>
+            <button class="btn" data-action="back">Voltar</button>
+        </section>
     </main>
-    <!-- Footer -->
-    <footer id="footer" class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>ELP-MOVE</h4>
-                <p>Líder em Mobilidade Sustentável</p>
-                <p>Transformando o futuro com soluções ecológicas e inovadoras.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Links Úteis</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#produtos">Produtos</a></li>
-                    <li><a href="#franquia">Modelo de Franquia</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contato</h4>
-                <p><strong>Email:</strong>support@elpmove.com</a></p>
-                <p><strong>Endereço:</strong> Strada per Solero 6, 15048, Valenza, Italia</p>
-                <p><strong>Telefone:</strong>+39 0131 123456</a></p>
-            </div>
-            <div class="footer-section">
-                <img src="image/logo.png" style="width: 20%;" alt="Logo da ELP-MOVE"><br>
-                <h4>Siga-nos</h4>
-                <div class="social-links">
-                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
+    <footer>
+        <div class="social">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 ELP-MOVE Srl. Todos os direitos reservados.</p>
-        </div>
+        <p>© 2025 ELP-MOVE. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
