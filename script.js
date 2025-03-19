@@ -6,7 +6,7 @@ const ThreeSetup = (() => {
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    scene.fog = new THREE.FogExp2(0x0a0a23, 0.002);
+    scene.fog = new THREE.FogExp2(0x0a0a23, 0.001); // Neblina menos densa
     camera.position.z = 100;
 
     window.addEventListener('resize', () => {
@@ -27,7 +27,7 @@ const Lighting = (() => {
     ThreeSetup.scene.add(ambientLight, pointLight);
 })();
 
-// Estrelas
+// Estrelas e Constelações
 const Stars = (() => {
     const starsCount = 2000;
     const positions = new Float32Array(starsCount * 3);
@@ -43,7 +43,73 @@ const Stars = (() => {
     const material = new THREE.PointsMaterial({ size: 1.5, color: 0xffffff, transparent: true, opacity: 0.6 });
     const stars = new THREE.Points(geometry, material);
 
-    ThreeSetup.scene.add(stars);
+    // Adicionar constelações
+    const constellationLines = [];
+    for (let i = 0; i < 10; i++) {
+        const linePositions = new Float32Array(6);
+        const startIdx = Math.floor(Math.random() * starsCount) * 3;
+        const endIdx = Math.floor(Math.random() * starsCount) * 3;
+        linePositions[0] = positions[startIdx];
+        linePositions[1] = positions[startIdx + 1];
+        linePositions[2] = positions[startIdx + 2];
+        linePositions[3] = positions[endIdx];
+        linePositions[4] = positions[endIdx + 1];
+        linePositions[5] = positions[endIdx + 2];
+
+        const lineGeometry = new THREE.BufferGeometry();
+        lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0xaaaaaa, opacity: 0.3, transparent: true });
+        const line = new THREE.Line(lineGeometry, lineMaterial);
+        constellationLines.push(line);
+    }
+
+    ThreeSetup.scene.add(stars, ...constellationLines);
+})();
+
+// Meteoros
+const Meteors = (() => {
+    const meteorCount = 20;
+    const meteors = [];
+
+    for (let i = 0; i < meteorCount; i++) {
+        const geometry = new THREE.SphereGeometry(0.5, 16, 16);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+        const meteor = new THREE.Mesh(geometry, material);
+
+        meteor.position.set(
+            (Math.random() - 0.5) * 2000,
+            (Math.random() - 0.5) * 2000,
+            (Math.random() - 0.5) * 2000
+        );
+        meteor.velocity = new THREE.Vector3(
+            (Math.random() - 0.5) * 2,
+            (Math.random() - 0.5) * 2,
+            (Math.random() - 0.5) * 2
+        );
+
+        ThreeSetup.scene.add(meteor);
+        meteors.push(meteor);
+    }
+
+    const updateMeteors = () => {
+        meteors.forEach(meteor => {
+            meteor.position.add(meteor.velocity);
+            if (meteor.position.length() > 1000) {
+                meteor.position.set(
+                    (Math.random() - 0.5) * 2000,
+                    (Math.random() - 0.5) * 2000,
+                    (Math.random() - 0.5) * 2000
+                );
+                meteor.velocity.set(
+                    (Math.random() - 0.5) * 2,
+                    (Math.random() - 0.5) * 2,
+                    (Math.random() - 0.5) * 2
+                );
+            }
+        });
+    };
+
+    return { update: updateMeteors };
 })();
 
 // Tetraedro
@@ -74,7 +140,7 @@ const Lines = (() => {
     return lines;
 })();
 
-// Planetas
+// Planetas com Anéis
 const Planets = (() => {
     const planetData = {
         green: [
@@ -100,10 +166,23 @@ const Planets = (() => {
             const geometry = new THREE.SphereGeometry(10, 32, 32);
             const material = new THREE.MeshPhongMaterial({ color: planetInfo.color });
             const planet = new THREE.Mesh(geometry, material);
+
+            const ringGeometry = new THREE.RingGeometry(12, 15, 32);
+            const ringMaterial = new THREE.MeshBasicMaterial({ 
+                color: planetInfo.color, 
+                side: THREE.DoubleSide, 
+                transparent: true, 
+                opacity: 0.5 
+            });
+            const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+            ring.rotation.x = Math.PI / 2;
+
             const planetGroup = new THREE.Group();
             planetGroup.add(planet);
+            planetGroup.add(ring);
             planetGroup.position.copy(planetInfo.position);
             planetGroup.visible = false;
+
             ThreeSetup.scene.add(planetGroup);
             planets.push({ planet: planetGroup, galaxy: galaxyKey, index });
         });
@@ -124,6 +203,7 @@ const Animation = (() => {
         Planets.forEach(planet => {
             if (planet.planet.visible) planet.planet.rotation.y += 0.005;
         });
+        Meteors.update();
         ThreeSetup.renderer.render(ThreeSetup.scene, ThreeSetup.camera);
     };
     animate();
@@ -134,7 +214,6 @@ const Navigation = (() => {
     let currentGalaxy = null;
 
     const showSection = (id) => {
-        // Limpa animações pendentes para evitar glitches
         gsap.killTweensOf([Tetrahedron.scale, Tetrahedron.rotation, ThreeSetup.camera.position]);
 
         document.querySelectorAll('section').forEach(section => {
@@ -147,10 +226,7 @@ const Navigation = (() => {
             target.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Animação de zoom no tetraedro ao mudar de seção
             gsap.to(Tetrahedron.scale, { x: 1.2, y: 1.2, z: 1.2, duration: 0.5, yoyo: true, repeat: 1 });
-
-            // Rotação extra no tetraedro na seção de sustentabilidade
             if (id === 'sustainability') {
                 gsap.to(Tetrahedron.rotation, { x: "+=2", y: "+=2", duration: 1, ease: 'power2.inOut' });
             }
@@ -226,7 +302,6 @@ const Events = (() => {
                 gsap.to(ThreeSetup.camera.position, { x: 0, y: 0, z: 100, duration: 1, ease: 'power2.inOut' });
                 Planets.forEach(p => p.planet.visible = false);
             }
-            // Fecha o menu mobile ao clicar em um item
             navMenu.classList.remove('active');
         });
     });
@@ -245,7 +320,7 @@ const Events = (() => {
     document.querySelectorAll('.cosmo-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             Navigation.enterGalaxy(btn.dataset.galaxy);
-            navMenu.classList.remove('active'); // Fecha o menu ao clicar em um botão de galáxia
+            navMenu.classList.remove('active');
         });
     });
 
@@ -265,7 +340,6 @@ const Events = (() => {
         btn.addEventListener('click', Navigation.travelBackToCosmo);
     });
 
-    // Formulário
     document.getElementById('contact-form').addEventListener('submit', (e) => {
         e.preventDefault();
         const inputs = document.querySelectorAll('#contact-form [data-storage]');
@@ -326,7 +400,5 @@ const ScrollAnimation = (() => {
 document.addEventListener('DOMContentLoaded', () => {
     Navigation.showSection('home');
     DataFetcher.fetchSustainabilityStats();
-
-    // Animação de entrada do header
     gsap.from('header', { y: -100, opacity: 0, duration: 1, ease: 'power2.out' });
 });
