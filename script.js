@@ -1,628 +1,332 @@
-let engine, scene, camera;
+// Configuração do Three.js
+const ThreeSetup = (() => {
+    const canvas = document.getElementById('canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 
-function initScene() {
-    try {
-        const canvas = document.getElementById("canvas");
-        if (!canvas) throw new Error("Canvas element not found");
-        
-        engine = new BABYLON.Engine(canvas, true);
-        scene = new BABYLON.Scene(engine);
-        scene.clearColor = new BABYLON.Color4(0, 0, 0.1, 1); // Fundo quase preto com leve azul
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    scene.fog = new THREE.FogExp2(0x0a0a23, 0.002);
+    camera.position.z = 100;
 
-        // Câmera
-        camera = new BABYLON.ArcRotateCamera("camera", Math.PI / 2, Math.PI / 2, 50, BABYLON.Vector3.Zero(), scene);
-        camera.attachControl(canvas, true);
-        camera.lowerRadiusLimit = 20;
-        camera.upperRadiusLimit = 100;
-
-        // Iluminação
-        const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-        light.intensity = 0.8;
-
-        const volumetricLight = new BABYLON.SpotLight("volumetricLight", new BABYLON.Vector3(0, 50, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 2, 1, scene);
-        volumetricLight.intensity = 0.5;
-        const glowLayer = new BABYLON.GlowLayer("glow", scene);
-        glowLayer.addIncludedOnlyMesh(volumetricLight);
-    } catch (error) {
-        console.error("Erro ao inicializar Babylon.js:", error);
-    }
-}
-
-function createGeometricBackground() {
-    try {
-        // Malha hexagonal
-        const hexGrid = BABYLON.MeshBuilder.CreateGround("hexGrid", { width: 200, height: 200, subdivisions: 50 }, scene);
-        const hexMat = new BABYLON.StandardMaterial("hexMat", scene);
-        hexMat.emissiveColor = new BABYLON.Color3(0, 0.8, 0.2); // Verde suave para combinar com a marca
-        hexMat.wireframe = true;
-        hexGrid.material = hexMat;
-
-        // Nebulosa de fundo
-        const nebula = BABYLON.MeshBuilder.CreatePlane("nebula", { size: 250 }, scene);
-        nebula.position.z = -100;
-        const nebulaMat = new BABYLON.StandardMaterial("nebulaMat", scene);
-        nebulaMat.emissiveTexture = new BABYLON.Texture("https://www.babylonjs-playground.com/textures/nebula.jpg", scene); // Substitua por textura local
-        nebulaMat.emissiveColor = new BABYLON.Color3(0.1, 0.5, 0.3); // Tons verdes sutis
-        nebulaMat.alpha = 0.6;
-        nebula.material = nebulaMat;
-
-        // Partículas estelares
-        const particleSystem = new BABYLON.ParticleSystem("stars", 2000, scene);
-        particleSystem.particleTexture = new BABYLON.Texture("https://www.babylonjs-playground.com/textures/flare.png", scene); // Substitua por textura local
-        particleSystem.emitter = new BABYLON.Vector3(0, 0, 0);
-        particleSystem.minEmitBox = new BABYLON.Vector3(-100, -50, -100);
-        particleSystem.maxEmitBox = new BABYLON.Vector3(100, 50, 100);
-        particleSystem.color1 = new BABYLON.Color4(1, 1, 1, 0.8);
-        particleSystem.color2 = new BABYLON.Color4(0, 0.8, 0.2, 0.5); // Verde da marca
-        particleSystem.minSize = 0.1;
-        particleSystem.maxSize = 0.3;
-        particleSystem.emitRate = 500;
-        particleSystem.updateSpeed = 0.01;
-        particleSystem.start();
-
-        return { hexGrid, nebula, particleSystem };
-    } catch (error) {
-        console.error("Erro ao criar fundo geométrico:", error);
-        return {};
-    }
-}
-
-function animateBackground(elements) {
-    let time = 0;
-    if (!scene) return;
-
-    scene.registerBeforeRender(() => {
-        time += 0.01;
-
-        // Movimento da malha hexagonal
-        const waveHeight = Math.sin(time) * 5;
-        if (elements.hexGrid) {
-            elements.hexGrid.position.y = waveHeight;
-            elements.hexGrid.rotation.x = Math.sin(time * 0.5) * 0.1;
-            elements.hexGrid.rotation.z = Math.cos(time * 0.3) * 0.1;
-        }
-
-        // Movimento da nebulosa
-        if (elements.nebula && elements.nebula.material) {
-            elements.nebula.rotation.z += 0.002;
-            elements.nebula.material.emissiveTexture.uOffset += 0.001;
-            elements.nebula.material.emissiveTexture.vOffset += 0.0005;
-        }
-    });
-}
-
-function showSection(sectionId) {
-    if (!sectionId) return;
-
-    // Ocultar todas as seções com animação de saída
-    document.querySelectorAll('.section').forEach(section => {
-        if (section.id !== sectionId) {
-            gsap.to(section, {
-                opacity: 0,
-                y: 50,
-                duration: 0.5,
-                ease: "power2.out",
-                onComplete: () => {
-                    section.style.display = 'none';
-                    section.classList.remove('active');
-                }
-            });
-        }
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // Mostrar a seção desejada com animação de entrada
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.style.display = 'flex';
-        targetSection.classList.remove('hidden');
-        targetSection.classList.add('active');
-        gsap.fromTo(targetSection, 
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-        );
+    return { scene, camera, renderer };
+})();
 
-        // Animação específica do banner na seção "produtos"
-        if (sectionId === 'produtos') {
-            const bannerTitle = targetSection.querySelector('.banner-title');
-            const bannerSubtitle = targetSection.querySelector('.banner-subtitle');
-            const bannerBtn = targetSection.querySelector('.banner-btn');
-            if (bannerTitle && bannerSubtitle && bannerBtn) {
-                gsap.from([bannerTitle, bannerSubtitle, bannerBtn], {
-                    opacity: 0,
-                    y: 30,
-                    stagger: 0.2,
-                    duration: 0.6,
-                    ease: "power2.out",
-                    delay: 0.2
-                });
+// Iluminação
+const Lighting = (() => {
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+    const pointLight = new THREE.PointLight(0xffffff, 1, 500);
+    pointLight.position.set(50, 50, 50);
+
+    ThreeSetup.scene.add(ambientLight, pointLight);
+})();
+
+// Estrelas
+const Stars = (() => {
+    const starsCount = 2000;
+    const positions = new Float32Array(starsCount * 3);
+
+    for (let i = 0; i < starsCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 2000;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 2000;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 2000;
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const material = new THREE.PointsMaterial({ size: 1.5, color: 0xffffff, transparent: true, opacity: 0.6 });
+    const stars = new THREE.Points(geometry, material);
+
+    ThreeSetup.scene.add(stars);
+})();
+
+// Tetraedro
+const Tetrahedron = (() => {
+    const geometry = new THREE.TetrahedronGeometry(10, 0);
+    const material = new THREE.MeshPhongMaterial({ color: 0x00ffcc, specular: 0x00ffcc, shininess: 30 });
+    const tetrahedron = new THREE.Mesh(geometry, material);
+    tetrahedron.position.set(0, 0, 50);
+
+    ThreeSetup.scene.add(tetrahedron);
+    return tetrahedron;
+})();
+
+// Linhas
+const Lines = (() => {
+    const positions = new Float32Array([
+        -1000, 0, 0, 1000, 0, 0,
+        0, -1000, 0, 0, 1000, 0,
+        0, 0, -1000, 0, 0, 1000
+    ]);
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const material = new THREE.LineBasicMaterial({ color: 0xff007a });
+    const lines = new THREE.LineSegments(geometry, material);
+
+    ThreeSetup.scene.add(lines);
+    return lines;
+})();
+
+// Planetas
+const Planets = (() => {
+    const planetData = {
+        green: [
+            { position: { x: -200, y: 50, z: -300 }, color: 0x00ffcc },
+            { position: { x: -100, y: 100, z: -250 }, color: 0x00cc99 },
+            { position: { x: 0, y: 80, z: -280 }, color: 0x009966 },
+            { position: { x: 100, y: 60, z: -260 }, color: 0x006633 },
+            { position: { x: 200, y: 40, z: -290 }, color: 0x003300 }
+        ],
+        move: [
+            { position: { x: -200, y: -50, z: -300 }, color: 0x66ccff },
+            { position: { x: -100, y: -80, z: -270 }, color: 0x3399ff },
+            { position: { x: 0, y: -60, z: -290 }, color: 0x0066cc },
+            { position: { x: 100, y: -40, z: -250 }, color: 0x003399 },
+            { position: { x: 200, y: -20, z: -280 }, color: 0x000066 }
+        ]
+    };
+
+    const planets = [];
+
+    const createPlanets = (galaxyKey) => {
+        planetData[galaxyKey].forEach((planetInfo, index) => {
+            const geometry = new THREE.SphereGeometry(10, 32, 32);
+            const material = new THREE.MeshPhongMaterial({ color: planetInfo.color });
+            const planet = new THREE.Mesh(geometry, material);
+            const planetGroup = new THREE.Group();
+            planetGroup.add(planet);
+            planetGroup.position.copy(planetInfo.position);
+            planetGroup.visible = false;
+            ThreeSetup.scene.add(planetGroup);
+            planets.push({ planet: planetGroup, galaxy: galaxyKey, index });
+        });
+    };
+
+    createPlanets('green');
+    createPlanets('move');
+
+    return planets;
+})();
+
+// Animação
+const Animation = (() => {
+    const animate = () => {
+        requestAnimationFrame(animate);
+        Tetrahedron.rotation.y += 0.005;
+        Lines.rotation.z += 0.001;
+        Planets.forEach(planet => {
+            if (planet.planet.visible) planet.planet.rotation.y += 0.005;
+        });
+        ThreeSetup.renderer.render(ThreeSetup.scene, ThreeSetup.camera);
+    };
+    animate();
+})();
+
+// Navegação
+const Navigation = (() => {
+    let currentGalaxy = null;
+
+    const showSection = (id) => {
+        // Limpa animações pendentes para evitar glitches
+        gsap.killTweensOf([Tetrahedron.scale, Tetrahedron.rotation, ThreeSetup.camera.position]);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.remove('active');
+            section.style.display = 'none';
+        });
+        const target = document.getElementById(id);
+        if (target) {
+            target.style.display = 'flex';
+            target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Animação de zoom no tetraedro ao mudar de seção
+            gsap.to(Tetrahedron.scale, { x: 1.2, y: 1.2, z: 1.2, duration: 0.5, yoyo: true, repeat: 1 });
+
+            // Rotação extra no tetraedro na seção de sustentabilidade
+            if (id === 'sustainability') {
+                gsap.to(Tetrahedron.rotation, { x: "+=2", y: "+=2", duration: 1, ease: 'power2.inOut' });
             }
         }
+    };
 
-        // Animação dos itens de produto
-        const products = targetSection.querySelectorAll('.product-item');
-        if (products.length > 0) {
-            gsap.from(products, {
-                opacity: 0,
-                y: 30,
-                stagger: 0.2,
-                duration: 0.6,
-                ease: "power2.out",
-                delay: 0.3
+    const enterGalaxy = (galaxy) => {
+        currentGalaxy = galaxy;
+        const intro = document.getElementById('intro');
+        const directionButtons = document.getElementById('direction-buttons');
+        const planetNames = {
+            green: ['Planeta Verde', 'Planeta Solar', 'Planeta Eco-Tech', 'Planeta Água', 'Planeta Ar'],
+            move: ['Planeta Eco-Trans', 'Planeta Veloz', 'Planeta Urbano', 'Planeta Turismo', 'Planeta Conectado']
+        };
+
+        directionButtons.innerHTML = '';
+        planetNames[galaxy].forEach((name, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.textContent = name;
+            btn.addEventListener('click', () => travelTo(index));
+            directionButtons.appendChild(btn);
+        });
+
+        intro.querySelector('#intro-title').textContent = `Explore a Galáxia ELP - ${galaxy === 'green' ? 'Green Technology' : 'ELP Move Mobilidade'}`;
+        intro.querySelector('#intro-desc').textContent = 'Descubra um universo de soluções sustentáveis.';
+        showSection('intro');
+        gsap.to(ThreeSetup.camera.position, { z: 200, duration: 1.5, ease: 'power2.inOut' });
+        Planets.forEach(p => p.planet.visible = p.galaxy === galaxy);
+    };
+
+    const travelTo = (index) => {
+        const targetPlanet = Planets.find(p => p.galaxy === currentGalaxy && p.index === index);
+        if (targetPlanet) {
+            showSection(`${currentGalaxy}-planet-${index}`);
+            gsap.to(ThreeSetup.camera.position, {
+                x: targetPlanet.planet.position.x,
+                y: targetPlanet.planet.position.y,
+                z: targetPlanet.planet.position.z + 50,
+                duration: 1.5,
+                ease: 'power2.inOut'
             });
+            Planets.forEach(p => p.planet.visible = false);
+            targetPlanet.planet.visible = true;
         }
-    }
-}
+    };
 
+    const travelBack = () => {
+        showSection('intro');
+        gsap.to(ThreeSetup.camera.position, { x: 0, y: 0, z: 200, duration: 1.5, ease: 'power2.inOut' });
+        Planets.forEach(p => p.planet.visible = p.galaxy === currentGalaxy);
+    };
+
+    const travelBackToCosmo = () => {
+        showSection('navegue');
+        gsap.to(ThreeSetup.camera.position, { x: 0, y: 0, z: 100, duration: 1.5, ease: 'power2.inOut' });
+        Planets.forEach(p => p.planet.visible = false);
+    };
+
+    return { showSection, enterGalaxy, travelTo, travelBack, travelBackToCosmo };
+})();
+
+// Eventos
+const Events = (() => {
+    const navMenu = document.getElementById('nav-menu');
+
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = link.getAttribute('href').substring(1);
+            Navigation.showSection(id);
+            if (id !== 'navegue' && id !== 'intro') {
+                gsap.to(ThreeSetup.camera.position, { x: 0, y: 0, z: 100, duration: 1, ease: 'power2.inOut' });
+                Planets.forEach(p => p.planet.visible = false);
+            }
+            // Fecha o menu mobile ao clicar em um item
+            navMenu.classList.remove('active');
+        });
+    });
+
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        if (navMenu.classList.contains('active')) {
+            navMenu.querySelectorAll('li').forEach((li, index) => li.style.setProperty('--index', index));
+            gsap.fromTo(navMenu, 
+                { y: '-100%', scale: 0.95 }, 
+                { y: '0%', scale: 1, duration: 0.5, ease: 'bounce.out' }
+            );
+        }
+    });
+
+    document.querySelectorAll('.cosmo-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            Navigation.enterGalaxy(btn.dataset.galaxy);
+            navMenu.classList.remove('active'); // Fecha o menu ao clicar em um botão de galáxia
+        });
+    });
+
+    document.querySelectorAll('.btn[data-next]').forEach(btn => {
+        btn.addEventListener('click', () => Navigation.travelTo(parseInt(btn.dataset.next)));
+    });
+
+    document.querySelectorAll('.btn[data-prev]').forEach(btn => {
+        btn.addEventListener('click', () => Navigation.travelTo(parseInt(btn.dataset.prev)));
+    });
+
+    document.querySelectorAll('.btn[data-action="back"]').forEach(btn => {
+        btn.addEventListener('click', Navigation.travelBack);
+    });
+
+    document.querySelectorAll('.btn[data-action="back-to-cosmo"]').forEach(btn => {
+        btn.addEventListener('click', Navigation.travelBackToCosmo);
+    });
+
+    // Formulário
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const inputs = document.querySelectorAll('#contact-form [data-storage]');
+        inputs.forEach(input => localStorage.setItem(input.dataset.storage, input.value));
+        alert('Mensagem enviada com sucesso!');
+        e.target.reset();
+    });
+})();
+
+// Fetch API Mock
+const DataFetcher = (() => {
+    const fetchSustainabilityStats = () => {
+        const statsDiv = document.getElementById('sustainability-stats');
+        const mockData = { co2Saved: 500, renewableEnergy: 80 };
+        statsDiv.innerHTML = `
+            <p>CO2 economizado: ${mockData.co2Saved} toneladas</p>
+            <p>Energia renovável: ${mockData.renewableEnergy}%</p>
+        `;
+    };
+    return { fetchSustainabilityStats };
+})();
+
+// Animação Baseada em Scroll
+const ScrollAnimation = (() => {
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (entry.target.classList.contains('product-grid')) {
+                        gsap.from(entry.target.children, {
+                            opacity: 0,
+                            y: 30,
+                            duration: 0.8,
+                            stagger: 0.2,
+                            ease: 'power2.out'
+                        });
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        document.querySelectorAll('section, .product-grid, #contact-form, footer').forEach(element => {
+            observer.observe(element);
+        });
+
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from('#home h1', { scrollTrigger: '#home h1', y: 50, opacity: 0, duration: 0.8, ease: 'power2.out' });
+        gsap.from('#home p', { scrollTrigger: '#home p', y: 30, opacity: 0, duration: 0.6, delay: 0.2, ease: 'power2.out' });
+        gsap.from('.btn', { scrollTrigger: '.btn', scale: 0.9, opacity: 0, duration: 0.5, delay: 0.3, ease: 'back.out(1.7)' });
+    });
+})();
+
+// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
-    try {
-        initScene();
-        const backgroundElements = createGeometricBackground();
-        animateBackground(backgroundElements);
-        if (engine) engine.runRenderLoop(() => {
-            if (scene) scene.render();
-        });
+    Navigation.showSection('home');
+    DataFetcher.fetchSustainabilityStats();
 
-        // Navegação Desktop
-        document.querySelectorAll('.menu a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const sectionId = link.getAttribute('href').substring(1);
-                showSection(sectionId);
-
-                // Fechar menu mobile ao clicar em um link
-                const nav = document.querySelector('.nav');
-                const phoneMenu = document.querySelector('.phone-menu');
-                if (nav && phoneMenu && nav.classList.contains('active')) {
-                    nav.classList.remove('active');
-                    phoneMenu.classList.remove('open');
-                    gsap.to(nav, { opacity: 0, y: -20, duration: 0.5, ease: "power2.out" });
-                }
-            });
-        });
-
-        // Menu Mobile
-        const phoneMenu = document.querySelector('.phone-menu');
-        const nav = document.querySelector('.nav');
-        if (phoneMenu && nav) {
-            phoneMenu.addEventListener('click', () => {
-                nav.classList.toggle('active');
-                phoneMenu.classList.toggle('open');
-
-                if (nav.classList.contains('active')) {
-                    gsap.fromTo(nav, 
-                        { opacity: 0, y: -20 },
-                        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
-                    );
-                } else {
-                    gsap.to(nav, { opacity: 0, y: -20, duration: 0.5, ease: "power2.out" });
-                }
-            });
-        }
-
-        // Mostrar a seção inicial
-        showSection('home');
-
-        // Ajuste do canvas para não sobrepor seções
-        const canvas = document.getElementById('canvas');
-        if (canvas) {
-            canvas.style.position = 'fixed';
-            canvas.style.zIndex = '-1'; // Garante que o canvas fique atrás das seções
-            canvas.style.top = '0';
-            canvas.style.left = '0';
-            canvas.style.width = '100%';
-            canvas.style.height = '100%';
-        }
-    } catch (error) {
-        console.error("Erro ao carregar o script:", error);
-    }
-});
-
-window.addEventListener('resize', () => {
-    if (engine) engine.resize();
-});
-
-// Tratamento de erros gerais
-window.addEventListener('error', (event) => {
-    console.error("Erro capturado:", event.message);
-});
-// Função para o Slide Automático na Seção Franquia
-function initFranchiseSlider() {
-    const slider = document.querySelector('.franchise-slider');
-    if (!slider) return;
-
-    const slides = slider.querySelectorAll('.slide');
-    const dots = slider.querySelectorAll('.dot');
-    const prevBtn = slider.querySelector('.slider-prev');
-    const nextBtn = slider.querySelector('.slider-next');
-    let currentSlide = 0;
-    let slideInterval;
-
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            if (i === index) {
-                slide.classList.add('active');
-            }
-        });
-
-        dots.forEach((dot, i) => {
-            dot.classList.remove('active');
-            if (i === index) {
-                dot.classList.add('active');
-            }
-        });
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    // Iniciar o slide automático (muda a cada 5 segundos)
-    function startSlide() {
-        slideInterval = setInterval(nextSlide, 5000);
-    }
-
-    // Parar o slide automático
-    function stopSlide() {
-        clearInterval(slideInterval);
-    }
-
-    // Eventos para botões de navegação
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            stopSlide();
-            prevSlide();
-            startSlide();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            stopSlide();
-            nextSlide();
-            startSlide();
-        });
-    }
-
-    // Eventos para os indicadores (dots)
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            stopSlide();
-            currentSlide = index;
-            showSlide(currentSlide);
-            startSlide();
-        });
-    });
-
-    // Pausar o slide quando a seção não estiver visível
-    const franchiseSection = document.getElementById('franquia');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                startSlide();
-            } else {
-                stopSlide();
-            }
-        });
-    }, { threshold: 0.5 });
-
-    observer.observe(franchiseSection);
-
-    // Mostrar o primeiro slide
-    showSlide(currentSlide);
-    startSlide();
-}
-
-// Função showSection ajustada para incluir animação das franquias
-function showSection(sectionId) {
-    if (!sectionId) return;
-
-    // Ocultar todas as seções com animação de saída
-    document.querySelectorAll('.section').forEach(section => {
-        if (section.id !== sectionId) {
-            gsap.to(section, {
-                opacity: 0,
-                y: 50,
-                duration: 0.5,
-                ease: "power2.out",
-                onComplete: () => {
-                    section.style.display = 'none';
-                    section.classList.remove('active');
-                }
-            });
-        }
-    });
-
-    // Mostrar a seção desejada com animação de entrada
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.style.display = 'flex';
-        targetSection.classList.remove('hidden');
-        targetSection.classList.add('active');
-        gsap.fromTo(targetSection, 
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-        );
-
-        // Animação específica do banner na seção "produtos"
-        if (sectionId === 'produtos') {
-            const bannerTitle = targetSection.querySelector('.banner-title');
-            const bannerSubtitle = targetSection.querySelector('.banner-subtitle');
-            const bannerBtn = targetSection.querySelector('.banner-btn');
-            if (bannerTitle && bannerSubtitle && bannerBtn) {
-                gsap.from([bannerTitle, bannerSubtitle, bannerBtn], {
-                    opacity: 0,
-                    y: 30,
-                    stagger: 0.2,
-                    duration: 0.6,
-                    ease: "power2.out",
-                    delay: 0.2
-                });
-            }
-        }
-
-        // Animação dos itens de produto
-        const products = targetSection.querySelectorAll('.product-item');
-        if (products.length > 0) {
-            gsap.from(products, {
-                opacity: 0,
-                y: 30,
-                stagger: 0.2,
-                duration: 0.6,
-                ease: "power2.out",
-                delay: 0.3
-            });
-        }
-
-        // Animação dos itens de franquia
-        const franchiseItems = targetSection.querySelectorAll('.franchise-item');
-        if (franchiseItems.length > 0 && sectionId === 'franquia') {
-            gsap.from(franchiseItems, {
-                opacity: 0,
-                y: 30,
-                stagger: 0.2,
-                duration: 0.6,
-                ease: "power2.out",
-                delay: 0.3
-            });
-        }
-
-        // Inicializar o slider quando a seção franquia for exibida
-        if (sectionId === 'franquia') {
-            initFranchiseSlider();
-        }
-    }
-}
-// Função showSection ajustada para incluir animação dos itens da seção Sobre
-function showSection(sectionId) {
-    if (!sectionId) return;
-
-    // Ocultar todas as seções com animação de saída
-    document.querySelectorAll('.section').forEach(section => {
-        if (section.id !== sectionId) {
-            gsap.to(section, {
-                opacity: 0,
-                y: 50,
-                duration: 0.5,
-                ease: "power2.out",
-                onComplete: () => {
-                    section.style.display = 'none';
-                    section.classList.remove('active');
-                }
-            });
-        }
-    });
-
-    // Mostrar a seção desejada com animação de entrada
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.style.display = 'flex';
-        targetSection.classList.remove('hidden');
-        targetSection.classList.add('active');
-        gsap.fromTo(targetSection, 
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-        );
-
-        // Animação específica do banner na seção "produtos"
-        if (sectionId === 'produtos') {
-            const bannerTitle = targetSection.querySelector('.banner-title');
-            const bannerSubtitle = targetSection.querySelector('.banner-subtitle');
-            const bannerBtn = targetSection.querySelector('.banner-btn');
-            if (bannerTitle && bannerSubtitle && bannerBtn) {
-                gsap.from([bannerTitle, bannerSubtitle, bannerBtn], {
-                    opacity: 0,
-                    y: 30,
-                    stagger: 0.2,
-                    duration: 0.6,
-                    ease: "power2.out",
-                    delay: 0.2
-                });
-            }
-        }
-
-        // Animação dos itens de produto
-        const products = targetSection.querySelectorAll('.product-item');
-        if (products.length > 0) {
-            gsap.from(products, {
-                opacity: 0,
-                y: 30,
-                stagger: 0.2,
-                duration: 0.6,
-                ease: "power2.out",
-                delay: 0.3
-            });
-        }
-
-        // Animação dos itens de franquia
-        const franchiseItems = targetSection.querySelectorAll('.franchise-item');
-        if (franchiseItems.length > 0 && sectionId === 'franquia') {
-            gsap.from(franchiseItems, {
-                opacity: 0,
-                y: 30,
-                stagger: 0.2,
-                duration: 0.6,
-                ease: "power2.out",
-                delay: 0.3
-            });
-        }
-
-        // Animação dos itens de benefícios
-        const beneficioItems = targetSection.querySelectorAll('.beneficios ul li');
-        if (beneficioItems.length > 0 && sectionId === 'beneficios') {
-            gsap.from(beneficioItems, {
-                opacity: 0,
-                y: 30,
-                stagger: 0.2,
-                duration: 0.6,
-                ease: "power2.out",
-                delay: 0.3
-            });
-        }
-
-        // Animação dos itens da seção Sobre (parte superior e inferior)
-        const sobreTopItems = targetSection.querySelectorAll('.sobre-top .sobre-column');
-        const sobreBottomItems = targetSection.querySelectorAll('.sobre-bottom .sobre-item');
-        if (sobreTopItems.length > 0 && sectionId === 'sobre') {
-            gsap.from(sobreTopItems, {
-                opacity: 0,
-                y: 30,
-                stagger: 0.2,
-                duration: 0.6,
-                ease: "power2.out",
-                delay: 0.3
-            });
-        }
-        if (sobreBottomItems.length > 0 && sectionId === 'sobre') {
-            gsap.from(sobreBottomItems, {
-                opacity: 0,
-                y: 30,
-                stagger: 0.2,
-                duration: 0.6,
-                ease: "power2.out",
-                delay: 0.5
-            });
-        }
-
-        // Inicializar o slider quando a seção franquia for exibida
-        if (sectionId === 'franquia') {
-            initFranchiseSlider();
-        }
-    }
-}
-// Função para download do catálogo
-document.getElementById('download-catalogo').addEventListener('click', function(e) {
-    e.preventDefault(); // Impede o comportamento padrão do link
-
-    // Caminho do arquivo (ajuste conforme necessário)
-    const catalogoUrl = 'downloads/catalogo-elp-move.pdf'; // Substitua pelo caminho real
-
-    // Verifica se o arquivo existe (simplificado, depende do servidor)
-    fetch(catalogoUrl)
-        .then(response => {
-            if (response.ok) {
-                // Cria um link temporário para download
-                const link = document.createElement('a');
-                link.href = catalogoUrl;
-                link.download = 'catalogo-elp-move.pdf'; // Nome do arquivo baixado
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            } else {
-                alert('O catálogo não está disponível no momento. Tente novamente mais tarde.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao acessar o catálogo:', error);
-            alert('Erro ao baixar o catálogo. Contate o suporte.');
-        });
-});
-// Função genérica para iniciar o download
-function iniciarDownload(catalogoUrl, nomeProduto) {
-    fetch(catalogoUrl)
-        .then(response => {
-            if (response.ok) {
-                window.location.href = catalogoUrl; // Inicia o download
-            } else {
-                alert(`O catálogo do ${nomeProduto} não está disponível no momento. Verifique o link ou contate o suporte.`);
-            }
-        })
-        .catch(error => {
-            console.error(`Erro ao acessar o catálogo do ${nomeProduto}:`, error);
-            alert(`Erro ao baixar o catálogo do ${nomeProduto}. Verifique sua conexão ou contate o suporte.`);
-        });
-}
-
-// X8 - Scooter Elétrica com Bateria Removível
-document.getElementById('download-x8').addEventListener('click', function(e) {
-    e.preventDefault();
-    const catalogoUrl = 'https://drive.google.com/uc?export=download&id=SUA_ID_AQUI_X8';
-    iniciarDownload(catalogoUrl, 'X8');
-});
-
-// X9 - Scooter Elétrica de Luxo
-document.getElementById('download-x9').addEventListener('click', function(e) {
-    e.preventDefault();
-    const catalogoUrl = 'https://drive.google.com/uc?export=download&id=SUA_ID_AQUI_X9';
-    iniciarDownload(catalogoUrl, 'X9');
-});
-
-// X10 - Scooter Elétrica Portátil Dobrável
-document.getElementById('download-x10').addEventListener('click', function(e) {
-    e.preventDefault();
-    const catalogoUrl = 'https://drive.google.com/uc?export=download&id=SUA_ID_AQUI_X10';
-    iniciarDownload(catalogoUrl, 'X10');
-});
-
-// X11 - Scooter Elétrica de Longo Alcance
-document.getElementById('download-x11').addEventListener('click', function(e) {
-    e.preventDefault();
-    const catalogoUrl = 'https://drive.google.com/uc?export=download&id=SUA_ID_AQUI_X11';
-    iniciarDownload(catalogoUrl, 'X11');
-});
-
-// X12 - Scooter Elétrica Off-Road
-document.getElementById('download-x12').addEventListener('click', function(e) {
-    e.preventDefault();
-    const catalogoUrl = 'https://drive.google.com/uc?export=download&id=SUA_ID_AQUI_X12';
-    iniciarDownload(catalogoUrl, 'X12');
-});
-
-// X13 - Scooter Elétrica Off-Road
-document.getElementById('download-x13').addEventListener('click', function(e) {
-    e.preventDefault();
-    const catalogoUrl = 'https://drive.google.com/uc?export=download&id=SUA_ID_AQUI_X13';
-    iniciarDownload(catalogoUrl, 'X13');
-});
-
-// H1 - E-Bike Urbana com Bateria Removível
-document.getElementById('download-h1').addEventListener('click', function(e) {
-    e.preventDefault();
-    const catalogoUrl = 'https://drive.google.com/uc?export=download&id=SUA_ID_AQUI_H1';
-    iniciarDownload(catalogoUrl, 'H1');
-});
-
-// H2 - E-Bike Urbana Inteligente
-document.getElementById('download-h2').addEventListener('click', function(e) {
-    e.preventDefault();
-    const catalogoUrl = 'https://drive.google.com/uc?export=download&id=SUA_ID_AQUI_H2';
-    iniciarDownload(catalogoUrl, 'H2');
-});
-
-// Q3 - E-Bike de Montanha Portátil
-document.getElementById('download-q3').addEventListener('click', function(e) {
-    e.preventDefault();
-    const catalogoUrl = 'https://drive.google.com/uc?export=download&id=SUA_ID_AQUI_Q3';
-    iniciarDownload(catalogoUrl, 'Q3');
-});
-
-// H3 - E-Bike de Carga
-document.getElementById('download-h3').addEventListener('click', function(e) {
-    e.preventDefault();
-    const catalogoUrl = 'https://drive.google.com/uc?export=download&id=SUA_ID_AQUI_H3';
-    iniciarDownload(catalogoUrl, 'H3');
+    // Animação de entrada do header
+    gsap.from('header', { y: -100, opacity: 0, duration: 1, ease: 'power2.out' });
 });
