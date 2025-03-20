@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ELP-MOVE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <canvas id="canvas"></canvas>
@@ -14,158 +15,1396 @@
             <h1>ELP-MOVE</h1>
             <p>Líder em Mobilidade Sustentável</p>
         </div>
-        <button class="menu-toggle">☰</button>
-        <ul class="nav-menu" id="nav-menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#products">Produtos</a></li>
-            <li><a href="#franquia">Franquia</a></li>
-            <li><a href="#sustainability">Sustentabilidade</a></li>
-            <li><a href="#contact">Contato</a></li>
-            <li><a href="#navegue">Navegue pelos Planetas</a></li>
-        </ul>
+        <nav>
+            <button class="menu-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Produtos</a></li>
+                <li><a href="#franchise">Franquia</a></li>
+                <li><a href="#sustainability">Sustentabilidade</a></li>
+                <li><a href="#contact">Contato</a></li>
+                <li><a href="#navegue">Navegue pelos Planetas</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
         <section id="home">
             <h1>Bem-vindo à ELP-MOVE</h1>
-            <p>Líder em mobilidade sustentável, oferecendo soluções inovadoras para um futuro mais verde.</p>
+            <p>Transformamos o futuro da mobilidade com soluções inovadoras e sustentáveis. Explore um universo de tecnologia verde e conectividade inteligente.</p>
             <a href="#navegue" class="btn">Explore o Universo ELP-MOVE</a>
         </section>
-
         <section id="products">
             <h2>Nossos Produtos</h2>
             <div class="product-grid">
                 <div class="product">
-                    <img src="https://via.placeholder.com/150" alt="Produto 1">
                     <h3>Veículo Elétrico Eco</h3>
-                    <p>Um carro elétrico sustentável para o dia a dia.</p>
+                    <p>Design compacto e eficiente, ideal para uso diário com zero emissões.</p>
+                    <button class="btn">Saiba Mais</button>
                 </div>
                 <div class="product">
-                    <img src="https://via.placeholder.com/150" alt="Produto 2">
                     <h3>Bicicleta Elétrica</h3>
-                    <p>Mobilidade urbana com zero emissão de carbono.</p>
+                    <p>Mobilidade urbana sustentável com bateria de longa duração.</p>
+                    <button class="btn">Saiba Mais</button>
                 </div>
                 <div class="product">
-                    <img src="https://via.placeholder.com/150" alt="Produto 3">
                     <h3>Carregador Solar</h3>
-                    <p>Energia limpa para seus dispositivos.</p>
+                    <p>Energia limpa portátil para seus dispositivos, em qualquer lugar.</p>
+                    <button class="btn">Saiba Mais</button>
+                </div>
+                <div class="product">
+                    <h3>Scooter Elétrica</h3>
+                    <p>Agilidade e eficiência para deslocamentos rápidos e sustentáveis.</p>
+                    <button class="btn">Saiba Mais</button>
+                </div>
+                <div class="product">
+                    <h3>Bateria Portátil</h3>
+                    <p>Energia renovável para manter seus dispositivos carregados.</p>
+                    <button class="btn">Saiba Mais</button>
+                </div>
+                <div class="product">
+                    <h3>Mobilidade Verde</h3>
+                    <p>Soluções completas para um estilo de vida eco-friendly.</p>
+                    <button class="btn">Saiba Mais</button>
                 </div>
             </div>
         </section>
-
-        <section id="franquia">
-            <h2>Seja um Franqueado ELP-MOVE</h2>
-            <p>Junte-se à nossa missão de transformar a mobilidade sustentável. Oferecemos suporte completo e um modelo de negócio lucrativo.</p>
+        <section id="franchise">
+            <h2>Franquia ELP-MOVE</h2>
+            <p>Faça parte da nossa rede de franquias e leve sustentabilidade para sua região.</p>
+            <ul>
+                <li>Suporte completo para franqueados</li>
+                <li>Produtos inovadores e exclusivos</li>
+                <li>Modelo de negócio sustentável</li>
+            </ul>
             <a href="#contact" class="btn">Entre em Contato</a>
         </section>
-
         <section id="sustainability">
             <h2>Sustentabilidade</h2>
             <div id="sustainability-stats"></div>
         </section>
-
         <section id="contact">
             <h2>Contato</h2>
             <form id="contact-form">
-                <input type="text" placeholder="Nome" data-storage="name" required>
-                <input type="email" placeholder="Email" data-storage="email" required>
-                <textarea placeholder="Mensagem" data-storage="message" required></textarea>
-                <button type="submit" class="btn">Enviar</button>
+                <input type="text" placeholder="Nome" data-storage="contact-name" required>
+                <input type="email" placeholder="Email" data-storage="contact-email" required>
+                <input type="tel" placeholder="Telefone" data-storage="contact-phone">
+                <textarea placeholder="Mensagem" data-storage="contact-message" required></textarea>
+                <button type="submit" class="btn">Enviar Mensagem</button>
+                <div id="form-message" style="display: none;"></div>
             </form>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> +55 (11) 1234-5678</p>
+                <p><i class="fas fa-envelope"></i> contato@elpmove.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> São Paulo, SP, Brasil</p>
+            </div>
         </section>
-
         <section id="navegue">
-            <h2>Navegue pelos Planetas</h2>
-            <button class="cosmo-btn" data-galaxy="green">Green Technology</button>
-            <button class="cosmo-btn" data-galaxy="move">ELP Move Mobilidade</button>
+            <h2>Navegue pelo Universo ELP</h2>
+            <p>Escolha uma galáxia para explorar nossas soluções sustentáveis.</p>
+            <button class="cosmo-btn" data-galaxy="green">Galáxia Green Technology</button>
+            <button class="cosmo-btn" data-galaxy="move">Galáxia ELP Move Mobilidade</button>
         </section>
-
         <section id="intro">
             <h2 id="intro-title"></h2>
             <p id="intro-desc"></p>
             <div id="direction-buttons"></div>
-            <button class="btn" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
         </section>
-
+        <!-- Green Planets -->
         <section id="green-planet-0">
             <h2>Planeta Verde</h2>
-            <p>Tecnologia sustentável para um futuro melhor.</p>
+            <p>Tecnologia sustentável para um futuro mais verde.</p>
             <button class="btn" data-next="1">Próximo Planeta</button>
-            <button class="btn" data-action="back">Voltar</button>
+            <button class="btn btn-reverse" data-action="back">Voltar</button>
+            <button class="btn" data-store="green-planet-0-store">Visitar Loja</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
         </section>
         <section id="green-planet-1">
             <h2>Planeta Solar</h2>
-            <p>Energia solar para mobilidade sustentável.</p>
-            <button class="btn" data-next="2">Próximo Planeta</button>
+            <p>Energia renovável para todos os momentos.</p>
             <button class="btn" data-prev="0">Planeta Anterior</button>
-            <button class="btn" data-action="back">Voltar</button>
+            <button class="btn" data-next="2">Próximo Planeta</button>
+            <button class="btn btn-reverse" data-action="back">Voltar</button>
+            <button class="btn" data-store="green-planet-1-store">Visitar Loja</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
         </section>
         <section id="green-planet-2">
             <h2>Planeta Eco-Tech</h2>
-            <p>Inovações ecológicas para o planeta.</p>
-            <button class="btn" data-next="3">Próximo Planeta</button>
+            <p>Inovações tecnológicas para um mundo sustentável.</p>
             <button class="btn" data-prev="1">Planeta Anterior</button>
-            <button class="btn" data-action="back">Voltar</button>
+            <button class="btn" data-next="3">Próximo Planeta</button>
+            <button class="btn btn-reverse" data-action="back">Voltar</button>
+            <button class="btn" data-store="green-planet-2-store">Visitar Loja</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
         </section>
         <section id="green-planet-3">
             <h2>Planeta Água</h2>
-            <p>Soluções para conservação de recursos hídricos.</p>
-            <button class="btn" data-next="4">Próximo Planeta</button>
+            <p>Soluções para preservação e uso consciente da água.</p>
             <button class="btn" data-prev="2">Planeta Anterior</button>
-            <button class="btn" data-action="back">Voltar</button>
+            <button class="btn" data-next="4">Próximo Planeta</button>
+            <button class="btn btn-reverse" data-action="back">Voltar</button>
+            <button class="btn" data-store="green-planet-3-store">Visitar Loja</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
         </section>
         <section id="green-planet-4">
             <h2>Planeta Ar</h2>
-            <p>Tecnologia para melhorar a qualidade do ar.</p>
+            <p>Tecnologias para melhorar a qualidade do ar.</p>
             <button class="btn" data-prev="3">Planeta Anterior</button>
-            <button class="btn" data-action="back">Voltar</button>
+            <button class="btn btn-reverse" data-action="back">Voltar</button>
+            <button class="btn" data-store="green-planet-4-store">Visitar Loja</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
         </section>
-
+        <!-- Move Planets -->
         <section id="move-planet-0">
             <h2>Planeta Eco-Trans</h2>
-            <p>Transporte ecológico para cidades.</p>
+            <p>Mobilidade sustentável para o futuro.</p>
             <button class="btn" data-next="1">Próximo Planeta</button>
-            <button class="btn" data-action="back">Voltar</button>
+            <button class="btn btn-reverse" data-action="back">Voltar</button>
+            <button class="btn" data-store="move-planet-0-store">Visitar Loja</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
         </section>
         <section id="move-planet-1">
             <h2>Planeta Veloz</h2>
-            <p>Mobilidade rápida e sustentável.</p>
-            <button class="btn" data-next="2">Próximo Planeta</button>
+            <p>Velocidade e eficiência em transporte sustentável.</p>
             <button class="btn" data-prev="0">Planeta Anterior</button>
-            <button class="btn" data-action="back">Voltar</button>
+            <button class="btn" data-next="2">Próximo Planeta</button>
+            <button class="btn btn-reverse" data-action="back">Voltar</button>
+            <button class="btn" data-store="move-planet-1-store">Visitar Loja</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
         </section>
         <section id="move-planet-2">
             <h2>Planeta Urbano</h2>
-            <p>Soluções para mobilidade urbana.</p>
-            <button class="btn" data-next="3">Próximo Planeta</button>
+            <p>Soluções para mobilidade urbana inteligente.</p>
             <button class="btn" data-prev="1">Planeta Anterior</button>
-            <button class="btn" data-action="back">Voltar</button>
+            <button class="btn" data-next="3">Próximo Planeta</button>
+            <button class="btn btn-reverse" data-action="back">Voltar</button>
+            <button class="btn" data-store="move-planet-2-store">Visitar Loja</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
         </section>
         <section id="move-planet-3">
             <h2>Planeta Turismo</h2>
-            <p>Turismo sustentável com ELP-MOVE.</p>
-            <button class="btn" data-next="4">Próximo Planeta</button>
+            <p>Explore o mundo de forma sustentável.</p>
             <button class="btn" data-prev="2">Planeta Anterior</button>
-            <button class="btn" data-action="back">Voltar</button>
+            <button class="btn" data-next="4">Próximo Planeta</button>
+            <button class="btn btn-reverse" data-action="back">Voltar</button>
+            <button class="btn" data-store="move-planet-3-store">Visitar Loja</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
         </section>
         <section id="move-planet-4">
             <h2>Planeta Conectado</h2>
-            <p>Conectividade para mobilidade inteligente.</p>
+            <p>Conectividade e mobilidade em harmonia.</p>
             <button class="btn" data-prev="3">Planeta Anterior</button>
-            <button class="btn" data-action="back">Voltar</button>
+            <button class="btn btn-reverse" data-action="back">Voltar</button>
+            <button class="btn" data-store="move-planet-4-store">Visitar Loja</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+        <!-- Green Planet Stores -->
+        <section id="green-planet-0-store">
+            <h2>Loja do Planeta Verde</h2>
+            <div class="product-grid">
+                <div class="planet-store" data-product="0">
+                    <h3>Carregador Solar Verde</h3>
+                    <p>Energia limpa para seus dispositivos.</p>
+                </div>
+                <div class="planet-store" data-product="1">
+                    <h3>Bateria Eco Verde</h3>
+                    <p>Armazenamento sustentável de energia.</p>
+                </div>
+                <div class="planet-store" data-product="2">
+                    <h3>Painel Solar Compacto</h3>
+                    <p>Energia renovável para uso doméstico.</p>
+                </div>
+                <div class="planet-store" data-product="3">
+                    <h3>Filtro de Água Eco</h3>
+                    <p>Água limpa e sustentável.</p>
+                </div>
+                <div class="planet-store" data-product="4">
+                    <h3>Luminária Solar</h3>
+                    <p>Iluminação ecológica para exteriores.</p>
+                </div>
+                <div class="planet-store" data-product="5">
+                    <h3>Kit de Reciclagem</h3>
+                    <p>Ferramentas para um estilo de vida sustentável.</p>
+                </div>
+            </div>
+            <button class="btn btn-reverse" data-action="back-to-planet" data-planet="green-planet-0">Voltar ao Planeta</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+        <section id="green-planet-1-store">
+            <h2>Loja do Planeta Solar</h2>
+            <div class="product-grid">
+                <div class="planet-store" data-product="0">
+                    <h3>Carregador Solar Portátil</h3>
+                    <p>Carregue seus dispositivos com energia solar.</p>
+                </div>
+                <div class="planet-store" data-product="1">
+                    <h3>Bateria Solar</h3>
+                    <p>Armazene energia solar para uso noturno.</p>
+                </div>
+                <div class="planet-store" data-product="2">
+                    <h3>Painel Solar Dobrável</h3>
+                    <p>Energia renovável para viagens.</p>
+                </div>
+                <div class="planet-store" data-product="3">
+                    <h3>Lanterna Solar</h3>
+                    <p>Iluminação sustentável para emergências.</p>
+                </div>
+                <div class="planet-store" data-product="4">
+                    <h3>Kit Solar Residencial</h3>
+                    <p>Energia solar para sua casa.</p>
+                </div>
+                <div class="planet-store" data-product="5">
+                    <h3>Carregador Solar USB</h3>
+                    <p>Carregamento rápido e ecológico.</p>
+                </div>
+            </div>
+            <button class="btn btn-reverse" data-action="back-to-planet" data-planet="green-planet-1">Voltar ao Planeta</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+        <section id="green-planet-2-store">
+            <h2>Loja do Planeta Eco-Tech</h2>
+            <div class="product-grid">
+                <div class="planet-store" data-product="0">
+                    <h3>Sensor de Energia</h3>
+                    <p>Monitore o consumo de energia em tempo real.</p>
+                </div>
+                <div class="planet-store" data-product="1">
+                    <h3>Termostato Inteligente</h3>
+                    <p>Controle a temperatura de forma eficiente.</p>
+                </div>
+                <div class="planet-store" data-product="2">
+                    <h3>Iluminação LED Eco</h3>
+                    <p>Economize energia com LEDs sustentáveis.</p>
+                </div>
+                <div class="planet-store" data-product="3">
+                    <h3>Carregador Sem Fio Eco</h3>
+                    <p>Carregamento eficiente e sustentável.</p>
+                </div>
+                <div class="planet-store" data-product="4">
+                    <h3>Monitor de Qualidade do Ar</h3>
+                    <p>Verifique a qualidade do ar em sua casa.</p>
+                </div>
+                <div class="planet-store" data-product="5">
+                    <h3>Kit de Automação Residencial</h3>
+                    <p>Tecnologia para uma casa sustentável.</p>
+                </div>
+            </div>
+            <button class="btn btn-reverse" data-action="back-to-planet" data-planet="green-planet-2">Voltar ao Planeta</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+        <section id="green-planet-3-store">
+            <h2>Loja do Planeta Água</h2>
+            <div class="product-grid">
+                <div class="planet-store" data-product="0">
+                    <h3>Filtro de Água Portátil</h3>
+                    <p>Água limpa em qualquer lugar.</p>
+                </div>
+                <div class="planet-store" data-product="1">
+                    <h3>Sistema de Reuso de Água</h3>
+                    <p>Reutilize água de forma sustentável.</p>
+                </div>
+                <div class="planet-store" data-product="2">
+                    <h3>Coletor de Água da Chuva</h3>
+                    <p>Capture água da chuva para uso doméstico.</p>
+                </div>
+                <div class="planet-store" data-product="3">
+                    <h3>Bomba de Água Solar</h3>
+                    <p>Irrigação sustentável com energia solar.</p>
+                </div>
+                <div class="planet-store" data-product="4">
+                    <h3>Filtro de Água Residencial</h3>
+                    <p>Água pura para sua casa.</p>
+                </div>
+                <div class="planet-store" data-product="5">
+                    <h3>Kit de Irrigação Eco</h3>
+                    <p>Irrigação eficiente para jardins.</p>
+                </div>
+            </div>
+            <button class="btn btn-reverse" data-action="back-to-planet" data-planet="green-planet-3">Voltar ao Planeta</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+        <section id="green-planet-4-store">
+            <h2>Loja do Planeta Ar</h2>
+            <div class="product-grid">
+                <div class="planet-store" data-product="0">
+                    <h3>Purificador de Ar Eco</h3>
+                    <p>Ar limpo e saudável para sua casa.</p>
+                </div>
+                <div class="planet-store" data-product="1">
+                    <h3>Ventilador Solar</h3>
+                    <p>Ventilação sustentável com energia solar.</p>
+                </div>
+                <div class="planet-store" data-product="2">
+                    <h3>Filtro de Ar para Carro</h3>
+                    <p>Melhore a qualidade do ar no seu veículo.</p>
+                </div>
+                <div class="planet-store" data-product="3">
+                    <h3>Monitor de CO2</h3>
+                    <p>Monitore os níveis de CO2 em ambientes.</p>
+                </div>
+                <div class="planet-store" data-product="4">
+                    <h3>Kit de Plantio Urbano</h3>
+                    <p>Plante árvores e melhore o ar.</p>
+                </div>
+                <div class="planet-store" data-product="5">
+                    <h3>Desumidificador Eco</h3>
+                    <p>Controle a umidade de forma sustentável.</p>
+                </div>
+            </div>
+            <button class="btn btn-reverse" data-action="back-to-planet" data-planet="green-planet-4">Voltar ao Planeta</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+        <!-- Move Planet Stores -->
+        <section id="move-planet-0-store">
+            <h2>Loja do Planeta Eco-Trans</h2>
+            <div class="product-grid">
+                <div class="planet-store" data-product="0">
+                    <h3>Veículo Elétrico Urbano</h3>
+                    <p>Mobilidade sustentável para cidades.</p>
+                </div>
+                <div class="planet-store" data-product="1">
+                    <h3>Bicicleta Elétrica Eco</h3>
+                    <p>Pedale com energia limpa.</p>
+                </div>
+                <div class="planet-store" data-product="2">
+                    <h3>Scooter Elétrica</h3>
+                    <p>Deslocamentos rápidos e ecológicos.</p>
+                </div>
+                <div class="planet-store" data-product="3">
+                    <h3>Carregador para Veículos</h3>
+                    <p>Carregamento rápido e sustentável.</p>
+                </div>
+                <div class="planet-store" data-product="4">
+                    <h3>Kit de Manutenção Eco</h3>
+                    <p>Cuide do seu veículo elétrico.</p>
+                </div>
+                <div class="planet-store" data-product="5">
+                    <h3>Acessórios para Mobilidade</h3>
+                    <p>Personalize sua experiência de transporte.</p>
+                </div>
+            </div>
+            <button class="btn btn-reverse" data-action="back-to-planet" data-planet="move-planet-0">Voltar ao Planeta</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+        <section id="move-planet-1-store">
+            <h2>Loja do Planeta Veloz</h2>
+            <div class="product-grid">
+                <div class="planet-store" data-product="0">
+                    <h3>Moto Elétrica Veloz</h3>
+                    <p>Velocidade e sustentabilidade em duas rodas.</p>
+                </div>
+                <div class="planet-store" data-product="1">
+                    <h3>Carro Elétrico Esportivo</h3>
+                    <p>Desempenho com zero emissões.</p>
+                </div>
+                <div class="planet-store" data-product="2">
+                    <h3>Scooter Elétrica Rápida</h3>
+                    <p>Agilidade para o dia a dia.</p>
+                </div>
+                <div class="planet-store" data-product="3">
+                    <h3>Bicicleta Elétrica de Alta Velocidade</h3>
+                    <p>Chegue mais rápido com energia limpa.</p>
+                </div>
+                <div class="planet-store" data-product="4">
+                    <h3>Carregador Rápido</h3>
+                    <p>Carregamento em minutos.</p>
+                </div>
+                <div class="planet-store" data-product="5">
+                    <h3>Kit de Performance</h3>
+                    <p>Melhore a velocidade do seu veículo.</p>
+                </div>
+            </div>
+            <button class="btn btn-reverse" data-action="back-to-planet" data-planet="move-planet-1">Voltar ao Planeta</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+        <section id="move-planet-2-store">
+            <h2>Loja do Planeta Urbano</h2>
+            <div class="product-grid">
+                <div class="planet-store" data-product="0">
+                    <h3>Veículo Elétrico Compacto</h3>
+                    <p>Ideal para cidades movimentadas.</p>
+                </div>
+                <div class="planet-store" data-product="1">
+                    <h3>Bicicleta Elétrica Urbana</h3>
+                    <p>Mobilidade para o dia a dia.</p>
+                </div>
+                <div class="planet-store" data-product="2">
+                    <h3>Scooter Elétrica Dobrável</h3>
+                    <p>Prática e fácil de transportar.</p>
+                </div>
+                <div class="planet-store" data-product="3">
+                    <h3>Carregador Público</h3>
+                    <p>Carregamento para uso urbano.</p>
+                </div>
+                <div class="planet-store" data-product="4">
+                    <h3>Kit de Segurança Urbana</h3>
+                    <p>Proteção para deslocamentos.</p>
+                </div>
+                <div class="planet-store" data-product="5">
+                    <h3>Aplicativo de Mobilidade</h3>
+                    <p>Planeje suas rotas de forma sustentável.</p>
+                </div>
+            </div>
+            <button class="btn btn-reverse" data-action="back-to-planet" data-planet="move-planet-2">Voltar ao Planeta</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+        <section id="move-planet-3-store">
+            <h2>Loja do Planeta Turismo</h2>
+            <div class="product-grid">
+                <div class="planet-store" data-product="0">
+                    <h3>Carro Elétrico de Viagem</h3>
+                    <p>Explore com sustentabilidade.</p>
+                </div>
+                <div class="planet-store" data-product="1">
+                    <h3>Bicicleta Elétrica de Turismo</h3>
+                    <p>Descubra novos lugares pedalando.</p>
+                </div>
+                <div class="planet-store" data-product="2">
+                    <h3>Scooter Elétrica de Longa Distância</h3>
+                    <p>Viagens curtas e ecológicas.</p>
+                </div>
+                <div class="planet-store" data-product="3">
+                    <h3>Carregador Portátil de Viagem</h3>
+                    <p>Energia para suas aventuras.</p>
+                </div>
+                <div class="planet-store" data-product="4">
+                    <h3>Kit de Camping Elétrico</h3>
+                    <p>Equipamentos sustentáveis para camping.</p>
+                </div>
+                <div class="planet-store" data-product="5">
+                    <h3>Guia de Rotas Sustentáveis</h3>
+                    <p>Planeje viagens eco-friendly.</p>
+                </div>
+            </div>
+            <button class="btn btn-reverse" data-action="back-to-planet" data-planet="move-planet-3">Voltar ao Planeta</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+        <section id="move-planet-4-store">
+            <h2>Loja do Planeta Conectado</h2>
+            <div class="product-grid">
+                <div class="planet-store" data-product="0">
+                    <h3>Veículo Elétrico Conectado</h3>
+                    <p>Conectividade e mobilidade em um só.</p>
+                </div>
+                <div class="planet-store" data-product="1">
+                    <h3>Bicicleta Elétrica Inteligente</h3>
+                    <p>Conectada ao seu smartphone.</p>
+                </div>
+                <div class="planet-store" data-product="2">
+                    <h3>Scooter Elétrica Conectada</h3>
+                    <p>Controle tudo pelo app.</p>
+                </div>
+                <div class="planet-store" data-product="3">
+                    <h3>Carregador Inteligente</h3>
+                    <p>Carregamento otimizado via app.</p>
+                </div>
+                <div class="planet-store" data-product="4">
+                    <h3>Kit de Conectividade</h3>
+                    <p>Conecte seus dispositivos de mobilidade.</p>
+                </div>
+                <div class="planet-store" data-product="5">
+                    <h3>Sistema de Navegação Eco</h3>
+                    <p>Navegação sustentável e inteligente.</p>
+                </div>
+            </div>
+            <button class="btn btn-reverse" data-action="back-to-planet" data-planet="move-planet-4">Voltar ao Planeta</button>
+            <button class="btn btn-reverse" data-action="back-to-cosmo">Voltar ao Cosmo</button>
+        </section>
+        <!-- Seções Individuais dos Produtos -->
+        <!-- Green Planet 0 Products -->
+        <section id="green-planet-0-product-0">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Carregador+Solar+Verde" alt="Carregador Solar Verde">
+                </div>
+                <div class="product-info">
+                    <h3>Carregador Solar Verde</h3>
+                    <p><strong>Descrição:</strong> Um carregador solar portátil que utiliza energia limpa para carregar seus dispositivos em qualquer lugar.</p>
+                    <p><strong>Preço:</strong> R$ 199,90</p>
+                    <p><strong>Especificações:</strong> Potência: 10W, Capacidade: 5000mAh, Peso: 200g, Tempo de carga: 4 horas (sol pleno).</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-0-product-1">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Bateria+Eco+Verde" alt="Bateria Eco Verde">
+                </div>
+                <div class="product-info">
+                    <h3>Bateria Eco Verde</h3>
+                    <p><strong>Descrição:</strong> Bateria sustentável para armazenar energia renovável, ideal para uso doméstico ou em viagens.</p>
+                    <p><strong>Preço:</strong> R$ 299,90</p>
+                    <p><strong>Especificações:</strong> Capacidade: 10000mAh, Material: Plástico reciclado, Peso: 300g, Ciclos de carga: 1000.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-0-product-2">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Painel+Solar+Compacto" alt="Painel Solar Compacto">
+                </div>
+                <div class="product-info">
+                    <h3>Painel Solar Compacto</h3>
+                    <p><strong>Descrição:</strong> Painel solar leve e compacto para gerar energia renovável em casa ou em acampamentos.</p>
+                    <p><strong>Preço:</strong> R$ 499,90</p>
+                    <p><strong>Especificações:</strong> Potência: 20W, Dimensões: 40x30cm, Peso: 1kg, Eficiência: 18%.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-0-product-3">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Filtro+de+Água+Eco" alt="Filtro de Água Eco">
+                </div>
+                <div class="product-info">
+                    <h3>Filtro de Água Eco</h3>
+                    <p><strong>Descrição:</strong> Filtro de água sustentável que remove impurezas sem o uso de produtos químicos.</p>
+                    <p><strong>Preço:</strong> R$ 149,90</p>
+                    <p><strong>Especificações:</strong> Capacidade: 2L, Material: Fibra de coco, Duração: 6 meses, Peso: 150g.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-0-product-4">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Luminária+Solar" alt="Luminária Solar">
+                </div>
+                <div class="product-info">
+                    <h3>Luminária Solar</h3>
+                    <p><strong>Descrição:</strong> Luminária movida a energia solar, perfeita para iluminar áreas externas de forma ecológica.</p>
+                    <p><strong>Preço:</strong> R$ 89,90</p>
+                    <p><strong>Especificações:</strong> Potência: 5W, Autonomia: 8 horas, Material: Plástico reciclado, Peso: 100g.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-0-product-5">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Kit+de+Reciclagem" alt="Kit de Reciclagem">
+                </div>
+                <div class="product-info">
+                    <h3>Kit de Reciclagem</h3>
+                    <p><strong>Descrição:</strong> Conjunto de ferramentas para facilitar a reciclagem e promover um estilo de vida sustentável.</p>
+                    <p><strong>Preço:</strong> R$ 129,90</p>
+                    <p><strong>Especificações:</strong> Inclui: 3 lixeiras de 5L, 1 guia de reciclagem, Material: Plástico reciclado, Peso: 500g.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <!-- Green Planet 1 Products -->
+        <section id="green-planet-1-product-0">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Carregador+Solar+Portátil" alt="Carregador Solar Portátil">
+                </div>
+                <div class="product-info">
+                    <h3>Carregador Solar Portátil</h3>
+                    <p><strong>Descrição:</strong> Carregador solar leve e portátil para carregar dispositivos em movimento.</p>
+                    <p><strong>Preço:</strong> R$ 179,90</p>
+                    <p><strong>Especificações:</strong> Potência: 8W, Capacidade: 4000mAh, Peso: 180g, Tempo de carga: 5 horas (sol pleno).</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-1-product-1">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Bateria+Solar" alt="Bateria Solar">
+                </div>
+                <div class="product-info">
+                    <h3>Bateria Solar</h3>
+                    <p><strong>Descrição:</strong> Bateria para armazenar energia solar, ideal para uso noturno ou em emergências.</p>
+                    <p><strong>Preço:</strong> R$ 349,90</p>
+                    <p><strong>Especificações:</strong> Capacidade: 12000mAh, Material: Alumínio reciclado, Peso: 350g, Ciclos de carga: 1200.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-1-product-2">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Painel+Solar+Dobrável" alt="Painel Solar Dobrável">
+                </div>
+                <div class="product-info">
+                    <h3>Painel Solar Dobrável</h3>
+                    <p><strong>Descrição:</strong> Painel solar dobrável para fácil transporte, perfeito para viagens e acampamentos.</p>
+                    <p><strong>Preço:</strong> R$ 599,90</p>
+                    <p><strong>Especificações:</strong> Potência: 30W, Dimensões: 50x40cm (aberto), Peso: 1.2kg, Eficiência: 20%.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-1-product-3">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Lanterna+Solar" alt="Lanterna Solar">
+                </div>
+                <div class="product-info">
+                    <h3>Lanterna Solar</h3>
+                    <p><strong>Descrição:</strong> Lanterna movida a energia solar, ideal para emergências ou camping.</p>
+                    <p><strong>Preço:</strong> R$ 69,90</p>
+                    <p><strong>Especificações:</strong> Potência: 3W, Autonomia: 6 horas, Material: Plástico reciclado, Peso: 80g.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-1-product-4">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Kit+Solar+Residencial" alt="Kit Solar Residencial">
+                </div>
+                <div class="product-info">
+                    <h3>Kit Solar Residencial</h3>
+                    <p><strong>Descrição:</strong> Kit completo para geração de energia solar em residências.</p>
+                    <p><strong>Preço:</strong> R$ 1999,90</p>
+                    <p><strong>Especificações:</strong> Potência: 100W, Inclui: 2 painéis, 1 inversor, Peso: 5kg, Eficiência: 22%.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-1-product-5">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Carregador+Solar+USB" alt="Carregador Solar USB">
+                </div>
+                <div class="product-info">
+                    <h3>Carregador Solar USB</h3>
+                    <p><strong>Descrição:</strong> Carregador solar com saída USB para dispositivos variados.</p>
+                    <p><strong>Preço:</strong> R$ 129,90</p>
+                    <p><strong>Especificações:</strong> Potência: 5W, Compatibilidade: USB-A, Peso: 150g, Tempo de carga: 6 horas (sol pleno).</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <!-- Green Planet 2 Products -->
+        <section id="green-planet-2-product-0">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Sensor+de+Energia" alt="Sensor de Energia">
+                </div>
+                <div class="product-info">
+                    <h3>Sensor de Energia</h3>
+                    <p><strong>Descrição:</strong> Sensor para monitoramento do consumo de energia em tempo real.</p>
+                    <p><strong>Preço:</strong> R$ 249,90</p>
+                    <p><strong>Especificações:</strong> Conectividade: Wi-Fi, Compatibilidade: iOS/Android, Peso: 100g, Precisão: 99%.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-2-product-1">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Termostato+Inteligente" alt="Termostato Inteligente">
+                </div>
+                <div class="product-info">
+                    <h3>Termostato Inteligente</h3>
+                    <p><strong>Descrição:</strong> Termostato para controle eficiente da temperatura, economizando energia.</p>
+                    <p><strong>Preço:</strong> R$ 399,90</p>
+                    <p><strong>Especificações:</strong> Conectividade: Wi-Fi, Faixa: 10-30°C, Peso: 200g, Compatibilidade: iOS/Android.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-2-product-2">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Iluminação+LED+Eco" alt="Iluminação LED Eco">
+                </div>
+                <div class="product-info">
+                    <h3>Iluminação LED Eco</h3>
+                    <p><strong>Descrição:</strong> Lâmpadas LED de baixo consumo para iluminação sustentável.</p>
+                    <p><strong>Preço:</strong> R$ 49,90</p>
+                    <p><strong>Especificações:</strong> Potência: 10W, Luminosidade: 800lm, Vida útil: 25000 horas, Material: Plástico reciclado.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-2-product-3">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Carregador+Sem+Fio+Eco" alt="Carregador Sem Fio Eco">
+                </div>
+                <div class="product-info">
+                    <h3>Carregador Sem Fio Eco</h3>
+                    <p><strong>Descrição:</strong> Carregador sem fio feito com materiais reciclados, eficiente e sustentável.</p>
+                    <p><strong>Preço:</strong> R$ 199,90</p>
+                    <p><strong>Especificações:</strong> Potência: 15W, Compatibilidade: Qi, Peso: 120g, Material: Plástico reciclado.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-2-product-4">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Monitor+de+Qualidade+do+Ar" alt="Monitor de Qualidade do Ar">
+                </div>
+                <div class="product-info">
+                    <h3>Monitor de Qualidade do Ar</h3>
+                    <p><strong>Descrição:</strong> Monitor para verificar a qualidade do ar em ambientes internos.</p>
+                    <p><strong>Preço:</strong> R$ 299,90</p>
+                    <p><strong>Especificações:</strong> Conectividade: Wi-Fi, Sensores: CO2/PM2.5, Peso: 150g, Compatibilidade: iOS/Android.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-2-product-5">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Kit+de+Automação+Residencial" alt="Kit de Automação Residencial">
+                </div>
+                <div class="product-info">
+                    <h3>Kit de Automação Residencial</h3>
+                    <p><strong>Descrição:</strong> Kit para automação residencial, com foco em eficiência energética.</p>
+                    <p><strong>Preço:</strong> R$ 999,90</p>
+                    <p><strong>Especificações:</strong> Inclui: 3 sensores, 1 hub, Conectividade: Wi-Fi, Peso: 500g, Compatibilidade: iOS/Android.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <!-- Green Planet 3 Products -->
+        <section id="green-planet-3-product-0">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Filtro+de+Água+Portátil" alt="Filtro de Água Portátil">
+                </div>
+                <div class="product-info">
+                    <h3>Filtro de Água Portátil</h3>
+                    <p><strong>Descrição:</strong> Filtro portátil para purificar água em qualquer lugar.</p>
+                    <p><strong>Preço:</strong> R$ 99,90</p>
+                    <p><strong>Especificações:</strong> Capacidade: 1L, Material: Plástico reciclado, Duração: 3 meses, Peso: 100g.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-3-product-1">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Sistema+de+Reuso+de+Água" alt="Sistema de Reuso de Água">
+                </div>
+                <div class="product-info">
+                    <h3>Sistema de Reuso de Água</h3>
+                    <p><strong>Descrição:</strong> Sistema para reutilizar água de forma sustentável em casa.</p>
+                    <p><strong>Preço:</strong> R$ 799,90</p>
+                    <p><strong>Especificações:</strong> Capacidade: 50L, Material: Plástico reciclado, Peso: 2kg, Instalação: 1 hora.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-3-product-2">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Coletor+de+Água+da+Chuva" alt="Coletor de Água da Chuva">
+                </div>
+                <div class="product-info">
+                    <h3>Coletor de Água da Chuva</h3>
+                    <p><strong>Descrição:</strong> Coletor para capturar água da chuva e usá-la em casa.</p>
+                    <p><strong>Preço:</strong> R$ 499,90</p>
+                    <p><strong>Especificações:</strong> Capacidade: 100L, Material: Plástico reciclado, Peso: 3kg, Filtro incluso.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-3-product-3">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Bomba+de+Água+Solar" alt="Bomba de Água Solar">
+                </div>
+                <div class="product-info">
+                    <h3>Bomba de Água Solar</h3>
+                    <p><strong>Descrição:</strong> Bomba movida a energia solar para irrigação sustentável.</p>
+                    <p><strong>Preço:</strong> R$ 699,90</p>
+                    <p><strong>Especificações:</strong> Potência: 50W, Vazão: 5L/min, Peso: 2kg, Material: Aço inoxidável.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-3-product-4">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Filtro+de+Água+Residencial" alt="Filtro de Água Residencial">
+                </div>
+                <div class="product-info">
+                    <h3>Filtro de Água Residencial</h3>
+                    <p><strong>Descrição:</strong> Filtro para purificar água em residências, garantindo água limpa.</p>
+                    <p><strong>Preço:</strong> R$ 299,90</p>
+                    <p><strong>Especificações:</strong> Capacidade: 10L, Material: Plástico reciclado, Duração: 1 ano, Peso: 1kg.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-3-product-5">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Kit+de+Irrigação+Eco" alt="Kit de Irrigação Eco">
+                </div>
+                <div class="product-info">
+                    <h3>Kit de Irrigação Eco</h3>
+                    <p><strong>Descrição:</strong> Kit de irrigação eficiente para jardins, com uso mínimo de água.</p>
+                    <p><strong>Preço:</strong> R$ 199,90</p>
+                    <p><strong>Especificações:</strong> Inclui: 10m de mangueira, 5 bicos, Material: Plástico reciclado, Peso: 500g.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <!-- Green Planet 4 Products -->
+        <section id="green-planet-4-product-0">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Purificador+de+Ar+Eco" alt="Purificador de Ar Eco">
+                </div>
+                <div class="product-info">
+                    <h3>Purificador de Ar Eco</h3>
+                    <p><strong>Descrição:</strong> Purificador de ar sustentável para ambientes internos.</p>
+                    <p><strong>Preço:</strong> R$ 499,90</p>
+                    <p><strong>Especificações:</strong> Área: 20m², Filtro: HEPA, Peso: 2kg, Consumo: 15W.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-4-product-1">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Ventilador+Solar" alt="Ventilador Solar">
+                </div>
+                <div class="product-info">
+                    <h3>Ventilador Solar</h3>
+                    <p><strong>Descrição:</strong> Ventilador movido a energia solar para ventilação sustentável.</p>
+                    <p><strong>Preço:</strong> R$ 299,90</p>
+                    <p><strong>Especificações:</strong> Potência: 10W, Autonomia: 6 horas, Peso: 1kg, Material: Plástico reciclado.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-4-product-2">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Filtro+de+Ar+para+Carro" alt="Filtro de Ar para Carro">
+                </div>
+                <div class="product-info">
+                    <h3>Filtro de Ar para Carro</h3>
+                    <p><strong>Descrição:</strong> Filtro para melhorar a qualidade do ar dentro do seu veículo.</p>
+                    <p><strong>Preço:</strong> R$ 99,90</p>
+                    <p><strong>Especificações:</strong> Filtro: HEPA, Duração: 6 meses, Peso: 200g, Compatibilidade: Universal.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-4-product-3">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Monitor+de+CO2" alt="Monitor de CO2">
+                </div>
+                <div class="product-info">
+                    <h3>Monitor de CO2</h3>
+                    <p><strong>Descrição:</strong> Monitor para medir os níveis de CO2 em ambientes internos.</p>
+                    <p><strong>Preço:</strong> R$ 349,90</p>
+                    <p><strong>Especificações:</strong> Conectividade: Wi-Fi, Faixa: 0-5000ppm, Peso: 150g, Compatibilidade: iOS/Android.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-4-product-4">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Kit+de+Plantio+Urbano" alt="Kit de Plantio Urbano">
+                </div>
+                <div class="product-info">
+                    <h3>Kit de Plantio Urbano</h3>
+                    <p><strong>Descrição:</strong> Kit para plantar árvores e melhorar a qualidade do ar em áreas urbanas.</p>
+                    <p><strong>Preço:</strong> R$ 149,90</p>
+                    <p><strong>Especificações:</strong> Inclui: 5 sementes, 5 vasos, Material: Plástico reciclado, Peso: 300g.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="green-planet-4-product-5">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Desumidificador+Eco" alt="Desumidificador Eco">
+                </div>
+                <div class="product-info">
+                    <h3>Desumidificador Eco</h3>
+                    <p><strong>Descrição:</strong> Desumidificador sustentável para controle de umidade em ambientes.</p>
+                    <p><strong>Preço:</strong> R$ 399,90</p>
+                    <p><strong>Especificações:</strong> Capacidade: 500ml/dia, Área: 15m², Peso: 1.5kg, Consumo: 20W.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="green-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <!-- Move Planet 0 Products -->
+        <section id="move-planet-0-product-0">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Veículo+Elétrico+Urbano" alt="Veículo Elétrico Urbano">
+                </div>
+                <div class="product-info">
+                    <h3>Veículo Elétrico Urbano</h3>
+                    <p><strong>Descrição:</strong> Veículo elétrico compacto para mobilidade urbana sustentável.</p>
+                    <p><strong>Preço:</strong> R$ 49999,90</p>
+                    <p><strong>Especificações:</strong> Autonomia: 200km, Velocidade máxima: 80km/h, Peso: 800kg, Capacidade: 2 pessoas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-0-product-1">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Bicicleta+Elétrica+Eco" alt="Bicicleta Elétrica Eco">
+                </div>
+                <div class="product-info">
+                    <h3>Bicicleta Elétrica Eco</h3>
+                    <p><strong>Descrição:</strong> Bicicleta elétrica para deslocamentos urbanos com energia limpa.</p>
+                    <p><strong>Preço:</strong> R$ 2999,90</p>
+                    <p><strong>Especificações:</strong> Autonomia: 50km, Velocidade máxima: 25km/h, Peso: 20kg, Material: Alumínio.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-0-product-2">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Scooter+Elétrica" alt="Scooter Elétrica">
+                </div>
+                <div class="product-info">
+                    <h3>Scooter Elétrica</h3>
+                    <p><strong>Descrição:</strong> Scooter elétrica para deslocamentos rápidos e ecológicos.</p>
+                    <p><strong>Preço:</strong> R$ 1999,90</p>
+                    <p><strong>Especificações:</strong> Autonomia: 40km, Velocidade máxima: 30km/h, Peso: 15kg, Material: Aço reforçado.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-0-product-3">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Carregador+para+Veículos" alt="Carregador para Veículos">
+                </div>
+                <div class="product-info">
+                    <h3>Carregador para Veículos</h3>
+                    <p><strong>Descrição:</strong> Carregador rápido para veículos elétricos, com design sustentável.</p>
+                    <p><strong>Preço:</strong> R$ 999,90</p>
+                    <p><strong>Especificações:</strong> Potência: 7kW, Compatibilidade: Tipo 2, Peso: 2kg, Tempo de carga: 4 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-0-product-4">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Kit+de+Manutenção+Eco" alt="Kit de Manutenção Eco">
+                </div>
+                <div class="product-info">
+                    <h3>Kit de Manutenção Eco</h3>
+                    <p><strong>Descrição:</strong> Kit de ferramentas para manutenção de veículos elétricos.</p>
+                    <p><strong>Preço:</strong> R$ 299,90</p>
+                    <p><strong>Especificações:</strong> Inclui: 5 ferramentas, 1 manual, Material: Aço reciclado, Peso: 1kg.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-0-product-5">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Acessórios+para+Mobilidade" alt="Acessórios para Mobilidade">
+                </div>
+                <div class="product-info">
+                    <h3>Acessórios para Mobilidade</h3>
+                    <p><strong>Descrição:</strong> Conjunto de acessórios para personalizar sua experiência de mobilidade.</p>
+                    <p><strong>Preço:</strong> R$ 199,90</p>
+                    <p><strong>Especificações:</strong> Inclui: Suporte para celular, 1 capacete, Material: Plástico reciclado, Peso: 500g.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-0-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <!-- Move Planet 1 Products -->
+        <section id="move-planet-1-product-0">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Moto+Elétrica+Veloz" alt="Moto Elétrica Veloz">
+                </div>
+                <div class="product-info">
+                    <h3>Moto Elétrica Veloz</h3>
+                    <p><strong>Descrição:</strong> Moto elétrica de alta velocidade, perfeita para quem busca desempenho e sustentabilidade.</p>
+                    <p><strong>Preço:</strong> R$ 12.999,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 120km/h, Autonomia: 150km, Peso: 120kg, Tempo de carga: 4 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-1-product-1">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Carro+Elétrico+Esportivo" alt="Carro Elétrico Esportivo">
+                </div>
+                <div class="product-info">
+                    <h3>Carro Elétrico Esportivo</h3>
+                    <p><strong>Descrição:</strong> Carro elétrico com design esportivo e zero emissões, ideal para quem ama velocidade.</p>
+                    <p><strong>Preço:</strong> R$ 89.999,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 200km/h, Autonomia: 400km, Peso: 1500kg, Tempo de carga: 6 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-1-product-2">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Scooter+Elétrica+Rápida" alt="Scooter Elétrica Rápida">
+                </div>
+                <div class="product-info">
+                    <h3>Scooter Elétrica Rápida</h3>
+                    <p><strong>Descrição:</strong> Scooter elétrica para deslocamentos rápidos e ecológicos no dia a dia.</p>
+                    <p><strong>Preço:</strong> R$ 4.999,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 60km/h, Autonomia: 80km, Peso: 50kg, Tempo de carga: 3 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-1-product-3">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Bicicleta+Elétrica+de+Alta+Velocidade" alt="Bicicleta Elétrica de Alta Velocidade">
+                </div>
+                <div class="product-info">
+                    <h3>Bicicleta Elétrica de Alta Velocidade</h3>
+                    <p><strong>Descrição:</strong> Bicicleta elétrica para quem busca velocidade e eficiência em deslocamentos.</p>
+                    <p><strong>Preço:</strong> R$ 3.499,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 40km/h, Autonomia: 60km, Peso: 25kg, Tempo de carga: 4 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-1-product-4">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Carregador+Rápido" alt="Carregador Rápido">
+                </div>
+                <div class="product-info">
+                    <h3>Carregador Rápido</h3>
+                    <p><strong>Descrição:</strong> Carregador rápido para veículos elétricos, com tecnologia de carregamento otimizado.</p>
+                    <p><strong>Preço:</strong> R$ 1.999,90</p>
+                    <p><strong>Especificações:</strong> Potência: 50kW, Compatibilidade: Universal, Peso: 5kg, Tempo de carga: 30 minutos (80%).</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-1-product-5">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Kit+de+Performance" alt="Kit de Performance">
+                </div>
+                <div class="product-info">
+                    <h3>Kit de Performance</h3>
+                    <p><strong>Descrição:</strong> Kit para melhorar a velocidade e eficiência de veículos elétricos.</p>
+                    <p><strong>Preço:</strong> R$ 2.499,90</p>
+                    <p><strong>Especificações:</strong> Inclui: Software de otimização, 2 peças de upgrade, Compatibilidade: Modelos ELP, Peso: 1kg.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-1-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <!-- Move Planet 2 Products -->
+        <section id="move-planet-2-product-0">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Veículo+Elétrico+Compacto" alt="Veículo Elétrico Compacto">
+                </div>
+                <div class="product-info">
+                    <h3>Veículo Elétrico Compacto</h3>
+                    <p><strong>Descrição:</strong> Veículo elétrico compacto, ideal para cidades movimentadas e estacionamento fácil.</p>
+                    <p><strong>Preço:</strong> R$ 39.999,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 100km/h, Autonomia: 250km, Peso: 800kg, Tempo de carga: 5 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-2-product-1">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Bicicleta+Elétrica+Urbana" alt="Bicicleta Elétrica Urbana">
+                </div>
+                <div class="product-info">
+                    <h3>Bicicleta Elétrica Urbana</h3>
+                    <p><strong>Descrição:</strong> Bicicleta elétrica para deslocamentos urbanos, com design moderno e funcional.</p>
+                    <p><strong>Preço:</strong> R$ 2.999,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 25km/h, Autonomia: 50km, Peso: 20kg, Tempo de carga: 4 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-2-product-2">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Scooter+Elétrica+Dobrável" alt="Scooter Elétrica Dobrável">
+                </div>
+                <div class="product-info">
+                    <h3>Scooter Elétrica Dobrável</h3>
+                    <p><strong>Descrição:</strong> Scooter elétrica dobrável, prática para transporte e armazenamento.</p>
+                    <p><strong>Preço:</strong> R$ 3.499,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 30km/h, Autonomia: 40km, Peso: 15kg, Tempo de carga: 3 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-2-product-3">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Carregador+Público" alt="Carregador Público">
+                </div>
+                <div class="product-info">
+                    <h3>Carregador Público</h3>
+                    <p><strong>Descrição:</strong> Estação de carregamento para uso público, ideal para áreas urbanas.</p>
+                    <p><strong>Preço:</strong> R$ 9.999,90</p>
+                    <p><strong>Especificações:</strong> Potência: 100kW, Capacidade: 2 veículos, Peso: 50kg, Compatibilidade: Universal.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-2-product-4">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Kit+de+Segurança+Urbana" alt="Kit de Segurança Urbana">
+                </div>
+                <div class="product-info">
+                    <h3>Kit de Segurança Urbana</h3>
+                    <p><strong>Descrição:</strong> Kit com acessórios de segurança para deslocamentos urbanos.</p>
+                    <p><strong>Preço:</strong> R$ 199,90</p>
+                    <p><strong>Especificações:</strong> Inclui: Capacete, luzes, cadeado, Material: Plástico reciclado, Peso: 500g.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-2-product-5">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Aplicativo+de+Mobilidade" alt="Aplicativo de Mobilidade">
+                </div>
+                <div class="product-info">
+                    <h3>Aplicativo de Mobilidade</h3>
+                    <p><strong>Descrição:</strong> Aplicativo para planejar rotas sustentáveis e monitorar seu veículo elétrico.</p>
+                    <p><strong>Preço:</strong> Gratuito (assinatura premium: R$ 29,90/mês)</p>
+                    <p><strong>Especificações:</strong> Compatibilidade: iOS/Android, Funcionalidades: Navegação, monitoramento, Peso: N/A.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-2-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <!-- Move Planet 3 Products -->
+        <section id="move-planet-3-product-0">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Carro+Elétrico+de+Viagem" alt="Carro Elétrico de Viagem">
+                </div>
+                <div class="product-info">
+                    <h3>Carro Elétrico de Viagem</h3>
+                    <p><strong>Descrição:</strong> Carro elétrico projetado para viagens longas, com alta autonomia.</p>
+                    <p><strong>Preço:</strong> R$ 69.999,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 150km/h, Autonomia: 500km, Peso: 1400kg, Tempo de carga: 6 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-3-product-1">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Bicicleta+Elétrica+de+Turismo" alt="Bicicleta Elétrica de Turismo">
+                </div>
+                <div class="product-info">
+                    <h3>Bicicleta Elétrica de Turismo</h3>
+                    <p><strong>Descrição:</strong> Bicicleta elétrica para turismo, com assento confortável e alta autonomia.</p>
+                    <p><strong>Preço:</strong> R$ 4.499,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 25km/h, Autonomia: 80km, Peso: 30kg, Tempo de carga: 5 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-3-product-2">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Scooter+Elétrica+de+Longa+Distância" alt="Scooter Elétrica de Longa Distância">
+                </div>
+                <div class="product-info">
+                    <h3>Scooter Elétrica de Longa Distância</h3>
+                    <p><strong>Descrição:</strong> Scooter elétrica para viagens curtas, com autonomia estendida.</p>
+                    <p><strong>Preço:</strong> R$ 5.999,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 50km/h, Autonomia: 100km, Peso: 60kg, Tempo de carga: 4 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-3-product-3">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Carregador+Portátil+de+Viagem" alt="Carregador Portátil de Viagem">
+                </div>
+                <div class="product-info">
+                    <h3>Carregador Portátil de Viagem</h3>
+                    <p><strong>Descrição:</strong> Carregador portátil para veículos elétricos, ideal para viagens longas.</p>
+                    <p><strong>Preço:</strong> R$ 1.499,90</p>
+                    <p><strong>Especificações:</strong> Potência: 20kW, Compatibilidade: Universal, Peso: 3kg, Tempo de carga: 1 hora (50%).</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-3-product-4">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Kit+de+Camping+Elétrico" alt="Kit de Camping Elétrico">
+                </div>
+                <div class="product-info">
+                    <h3>Kit de Camping Elétrico</h3>
+                    <p><strong>Descrição:</strong> Kit com equipamentos elétricos sustentáveis para camping.</p>
+                    <p><strong>Preço:</strong> R$ 799,90</p>
+                    <p><strong>Especificações:</strong> Inclui: Lanterna solar, carregador portátil, Material: Plástico reciclado, Peso: 1kg.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-3-product-5">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Guia+de+Rotas+Sustentáveis" alt="Guia de Rotas Sustentáveis">
+                </div>
+                <div class="product-info">
+                    <h3>Guia de Rotas Sustentáveis</h3>
+                    <p><strong>Descrição:</strong> Guia digital para planejar viagens eco-friendly, com rotas otimizadas.</p>
+                    <p><strong>Preço:</strong> R$ 49,90</p>
+                    <p><strong>Especificações:</strong> Formato: Digital, Compatibilidade: iOS/Android, Funcionalidades: Mapas offline, Peso: N/A.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-3-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <!-- Move Planet 4 Products -->
+        <section id="move-planet-4-product-0">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Veículo+Elétrico+Conectado" alt="Veículo Elétrico Conectado">
+                </div>
+                <div class="product-info">
+                    <h3>Veículo Elétrico Conectado</h3>
+                    <p><strong>Descrição:</strong> Veículo elétrico com conectividade avançada, controlado por aplicativo.</p>
+                    <p><strong>Preço:</strong> R$ 59.999,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 120km/h, Autonomia: 350km, Peso: 1300kg, Tempo de carga: 5 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-4-product-1">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Bicicleta+Elétrica+Inteligente" alt="Bicicleta Elétrica Inteligente">
+                </div>
+                <div class="product-info">
+                    <h3>Bicicleta Elétrica Inteligente</h3>
+                    <p><strong>Descrição:</strong> Bicicleta elétrica conectada ao seu smartphone, com monitoramento em tempo real.</p>
+                    <p><strong>Preço:</strong> R$ 3.999,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 25km/h, Autonomia: 60km, Peso: 22kg, Tempo de carga: 4 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-4-product-2">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Scooter+Elétrica+Conectada" alt="Scooter Elétrica Conectada">
+                </div>
+                <div class="product-info">
+                    <h3>Scooter Elétrica Conectada</h3>
+                    <p><strong>Descrição:</strong> Scooter elétrica com conectividade via app, para controle e monitoramento.</p>
+                    <p><strong>Preço:</strong> R$ 4.499,90</p>
+                    <p><strong>Especificações:</strong> Velocidade máxima: 40km/h, Autonomia: 50km, Peso: 18kg, Tempo de carga: 3 horas.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-4-product-3">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Carregador+Inteligente" alt="Carregador Inteligente">
+                </div>
+                <div class="product-info">
+                    <h3>Carregador Inteligente</h3>
+                    <p><strong>Descrição:</strong> Carregador com tecnologia inteligente, otimizado via aplicativo.</p>
+                    <p><strong>Preço:</strong> R$ 2.499,90</p>
+                    <p><strong>Especificações:</strong> Potência: 30kW, Compatibilidade: Universal, Peso: 4kg, Conectividade: Wi-Fi.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-4-product-4">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Kit+de+Conectividade" alt="Kit de Conectividade">
+                </div>
+                <div class="product-info">
+                    <h3>Kit de Conectividade</h3>
+                    <p><strong>Descrição:</strong> Kit para conectar seus dispositivos de mobilidade ao seu smartphone.</p>
+                    <p><strong>Preço:</strong> R$ 799,90</p>
+                    <p><strong>Especificações:</strong> Inclui: Módulo Wi-Fi, sensores, Compatibilidade: Modelos ELP, Peso: 300g.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
+        </section>
+        <section id="move-planet-4-product-5">
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x200.png?text=Sistema+de+Navegação+Eco" alt="Sistema de Navegação Eco">
+                </div>
+                <div class="product-info">
+                    <h3>Sistema de Navegação Eco</h3>
+                    <p><strong>Descrição:</strong> Sistema de navegação sustentável, com rotas otimizadas para eficiência energética.</p>
+                    <p><strong>Preço:</strong> R$ 999,90</p>
+                    <p><strong>Especificações:</strong> Conectividade: Wi-Fi, Compatibilidade: iOS/Android, Funcionalidades: Mapas offline, Peso: N/A.</p>
+                    <button class="btn btn-reverse" data-action="back-to-store" data-store="move-planet-4-store">Voltar à Loja</button>
+                </div>
+            </div>
         </section>
     </main>
-    <footer>
-        <div class="social">
-            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+     <footer>
+      <div class="footer-container">
+        <div class="footer-section footer-about">
+          <h3>ELP-MOVE</h3>
+          <p>Líder em mobilidade sustentável, oferecendo soluções inovadoras para um futuro mais verde.</p>
         </div>
-        <p>© 2025 ELP-MOVE. Todos os direitos reservados.</p>
+        <div class="footer-section footer-links">
+          <h3>Links Úteis</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Produtos</a></li>
+            <li><a href="#franchise">Franquia</a></li>
+            <li><a href="#sustainability">Sustentabilidade</a></li>
+            <li><a href="#contact">Contato</a></li>
+            <li><a href="#about">Sobre Nós</a></li>
+            <li><a href="#terms">Termos de Uso</a></li>
+            <li><a href="#privacy">Política de Privacidade</a></li>
+          </ul>
+        </div>
+        <div class="footer-section footer-contact">
+          <h3>Entre em Contato</h3>
+          <p><i class="fas fa-phone"></i> <a href="tel:+551112345678">+55 (11) 1234-5678</a></p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:contato@elpmove.com">contato@elpmove.com</a></p>
+          <p><i class="fas fa-map-marker-alt"></i> São Paulo, SP, Brasil</p>
+        </div>
+        <div class="footer-section footer-social">
+          <h3>Siga-nos</h3>
+          <div class="social-links">
+            <a href="https://facebook.com/elpmove" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/elpmove" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/elpmove" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com/company/elpmove" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 ELP-MOVE. Todos os direitos reservados.</p>
+      </div>
     </footer>
-
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
